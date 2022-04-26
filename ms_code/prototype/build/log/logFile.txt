@@ -1,0 +1,3 @@
+[2022-04-25 16:46:24.536] [cn_logger] [error] configure file not exist!
+[2022-04-25 16:46:24.536] [cn_logger] [error] initialize FileSystemImpl failed!
+[2022-04-25 16:46:24.536] [cn_logger] [info] cn im-memory image flush back to metapath!

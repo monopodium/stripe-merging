@@ -1,0 +1,6 @@
+/home/ms/Documents/my_code/examples/cpp/helloworld/cmake/build/CMakeFiles/edit_cache.dir
+/home/ms/Documents/my_code/examples/cpp/helloworld/cmake/build/CMakeFiles/rebuild_cache.dir
+/home/ms/Documents/my_code/examples/cpp/helloworld/cmake/build/CMakeFiles/greeter_client.dir
+/home/ms/Documents/my_code/examples/cpp/helloworld/cmake/build/CMakeFiles/greeter_server.dir
+/home/ms/Documents/my_code/examples/cpp/helloworld/cmake/build/CMakeFiles/greeter_async_client.dir
+/home/ms/Documents/my_code/examples/cpp/helloworld/cmake/build/CMakeFiles/greeter_async_server.dir

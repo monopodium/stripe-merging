@@ -1,0 +1,6 @@
+0.0.0.0:10001
+default blksz: TO be added
+
+netstat -ap | grep 8080
+ps aux | grep 程序名
+kill -9 进程号

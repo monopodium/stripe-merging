@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/unittest.dir/test/test.cpp.o  -o unittest   -L/home/ms/Documents/my_code/ms_code/prototype/lib  -Wl,-rpath,/home/ms/Documents/my_code/ms_code/prototype/lib -Wl,-Bstatic -lJerasure -lgf_complete -Wl,-Bdynamic 

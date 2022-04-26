@@ -1,0 +1,6 @@
+/home/ms/Documents/my_code/ms_code/prototype/build/CMakeFiles/rebuild_cache.dir
+/home/ms/Documents/my_code/ms_code/prototype/build/CMakeFiles/edit_cache.dir
+/home/ms/Documents/my_code/ms_code/prototype/build/CMakeFiles/client.dir
+/home/ms/Documents/my_code/ms_code/prototype/build/CMakeFiles/coordinator.dir
+/home/ms/Documents/my_code/ms_code/prototype/build/CMakeFiles/unittest.dir
+/home/ms/Documents/my_code/ms_code/prototype/build/CMakeFiles/datanode.dir

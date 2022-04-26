@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package datanode;
+
+//
+service FromDataNode
+{
+
+}
+
+service FromCoodinator
+{
+    rpc checkalive(CheckaliveCMD ) returns(RequestResult);
+    rpc clearallstripe(ClearallstripeCMD) returns(RequestResult);
+}
+
+message CheckaliveCMD
+{
+
+}
+message ClearallstripeCMD
+{
+
+}
+message RequestResult
+{
+  bool trueorfalse=1;
+}

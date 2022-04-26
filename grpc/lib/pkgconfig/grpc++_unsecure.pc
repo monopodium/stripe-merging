@@ -1,0 +1,12 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: gRPC++ unsecure
+Description: C++ wrapper for gRPC without SSL
+Version: 1.27.0-pre2
+Cflags: -I${includedir}
+Requires: grpc_unsecure
+Libs: -L${libdir} -lgrpc++_unsecure -labsl_bad_optional_access -labsl_strings -labsl_strings_internal -labsl_int128 -labsl_base -labsl_spinlock_wait -labsl_dynamic_annotations -labsl_throw_delegate -labsl_raw_logging_internal -labsl_log_severity
+Libs.private: 

@@ -1,0 +1,11 @@
+prefix=/home/ms/Documents/peper2022/protobuf
+exec_prefix=/home/ms/Documents/peper2022/protobuf
+libdir=/home/ms/Documents/peper2022/protobuf/lib
+includedir=/home/ms/Documents/peper2022/protobuf/include
+
+Name: Protocol Buffers
+Description: Google's Data Interchange Format
+Version: 3.11.4.0
+Libs: -L${libdir} -lprotobuf-lite -lpthread
+Cflags: -I${includedir} -lpthread
+Conflicts: protobuf

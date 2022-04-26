@@ -1,0 +1,55 @@
+syntax ="proto3";
+
+package coordinator;
+
+//client side stub
+//coordinator size implement
+
+service CoordinatorService{
+    rpc setplacementpolicy(SetPlacementCommand) returns(RequestResult);
+
+}
+
+service FromDataNode{
+
+}
+
+message SetPlacementCommand{
+  enum PLACE{
+    RANDOM = 0;
+    DIS = 1;
+    AGG = 2;
+  }
+  PLACE place = 1;
+}
+
+message RequestResult{
+  bool trueorfalse=1;
+}
+
+
+message StripeInfo{
+  int32 stripeid = 1;
+  int32 stripe_r = 2;
+  int32 stripe_c = 3;
+  int32 blksize =  4;
+}
+
+message StripeId{
+  int32 stripeid = 1;
+}
+ 
+message column{
+  repeated string dataLoc = 1;
+  string Last_c = 2;
+}
+
+
+message StripeLocation{
+  repeated column columnsLoc = 1;
+  column Last_R_G = 2;
+}
+message StripeDetail{
+  StripeLocation stripelocation = 1;
+  StripeId stripeid = 2;
+}
