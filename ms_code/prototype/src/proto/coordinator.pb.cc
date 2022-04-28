@@ -231,16 +231,17 @@ const char descriptor_table_protodef_coordinator_2eproto[] PROTOBUF_SECTION_VARI
   "o\022\020\n\010stripeid\030\001 \001(\005\022\020\n\010stripe_r\030\002 \001(\005\022\020\n"
   "\010stripe_c\030\003 \001(\005\022\017\n\007blksize\030\004 \001(\005\"\034\n\010Stri"
   "peId\022\020\n\010stripeid\030\001 \001(\005\")\n\006column\022\017\n\007data"
-  "Loc\030\001 \003(\t\022\016\n\006Last_c\030\002 \001(\t\"`\n\016StripeLocat"
-  "ion\022\'\n\ncolumnsLoc\030\001 \003(\0132\023.coordinator.co"
-  "lumn\022%\n\010Last_R_G\030\002 \001(\0132\023.coordinator.col"
+  "loc\030\001 \003(\t\022\016\n\006last_c\030\002 \001(\t\"`\n\016StripeLocat"
+  "ion\022\'\n\ncolumnsloc\030\001 \003(\0132\023.coordinator.co"
+  "lumn\022%\n\010last_r_g\030\002 \001(\0132\023.coordinator.col"
   "umn\"l\n\014StripeDetail\0223\n\016stripelocation\030\001 "
   "\001(\0132\033.coordinator.StripeLocation\022\'\n\010stri"
-  "peid\030\002 \001(\0132\025.coordinator.StripeId2h\n\022Coo"
-  "rdinatorService\022R\n\022setplacementpolicy\022 ."
-  "coordinator.SetPlacementCommand\032\032.coordi"
-  "nator.RequestResult2\016\n\014FromDataNodeb\006pro"
-  "to3"
+  "peid\030\002 \001(\0132\025.coordinator.StripeId2\254\001\n\022Co"
+  "ordinatorService\022R\n\022setplacementpolicy\022 "
+  ".coordinator.SetPlacementCommand\032\032.coord"
+  "inator.RequestResult\022B\n\014uploadStripe\022\027.c"
+  "oordinator.StripeInfo\032\031.coordinator.Stri"
+  "peDetail2\016\n\014FromDataNodeb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_coordinator_2eproto_deps[1] = {
 };
@@ -256,7 +257,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_coo
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_coordinator_2eproto_once;
 static bool descriptor_table_coordinator_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_coordinator_2eproto = {
-  &descriptor_table_coordinator_2eproto_initialized, descriptor_table_protodef_coordinator_2eproto, "coordinator.proto", 683,
+  &descriptor_table_coordinator_2eproto_initialized, descriptor_table_protodef_coordinator_2eproto, "coordinator.proto", 752,
   &descriptor_table_coordinator_2eproto_once, descriptor_table_coordinator_2eproto_sccs, descriptor_table_coordinator_2eproto_deps, 7, 0,
   schemas, file_default_instances, TableStruct_coordinator_2eproto::offsets,
   file_level_metadata_coordinator_2eproto, 7, file_level_enum_descriptors_coordinator_2eproto, file_level_service_descriptors_coordinator_2eproto,
@@ -1176,7 +1177,7 @@ const char* column::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated string dataLoc = 1;
+      // repeated string dataloc = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
@@ -1184,18 +1185,18 @@ const char* column::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
             ptr += 1;
             auto str = _internal_add_dataloc();
             ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "coordinator.column.dataLoc"));
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "coordinator.column.dataloc"));
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else goto handle_unusual;
         continue;
-      // string Last_c = 2;
+      // string last_c = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_last_c();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "coordinator.column.Last_c"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "coordinator.column.last_c"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1225,22 +1226,22 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated string dataLoc = 1;
+  // repeated string dataloc = 1;
   for (int i = 0, n = this->_internal_dataloc_size(); i < n; i++) {
     const auto& s = this->_internal_dataloc(i);
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       s.data(), static_cast<int>(s.length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "coordinator.column.dataLoc");
+      "coordinator.column.dataloc");
     target = stream->WriteString(1, s, target);
   }
 
-  // string Last_c = 2;
+  // string last_c = 2;
   if (this->last_c().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_last_c().data(), static_cast<int>(this->_internal_last_c().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "coordinator.column.Last_c");
+      "coordinator.column.last_c");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_last_c(), target);
   }
@@ -1261,7 +1262,7 @@ size_t column::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated string dataLoc = 1;
+  // repeated string dataloc = 1;
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(dataloc_.size());
   for (int i = 0, n = dataloc_.size(); i < n; i++) {
@@ -1269,7 +1270,7 @@ size_t column::ByteSizeLong() const {
       dataloc_.Get(i));
   }
 
-  // string Last_c = 2;
+  // string last_c = 2;
   if (this->last_c().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -1422,7 +1423,7 @@ const char* StripeLocation::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated .coordinator.column columnsLoc = 1;
+      // repeated .coordinator.column columnsloc = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
@@ -1434,7 +1435,7 @@ const char* StripeLocation::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else goto handle_unusual;
         continue;
-      // .coordinator.column Last_R_G = 2;
+      // .coordinator.column last_r_g = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_last_r_g(), ptr);
@@ -1467,7 +1468,7 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .coordinator.column columnsLoc = 1;
+  // repeated .coordinator.column columnsloc = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_columnsloc_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
@@ -1475,7 +1476,7 @@ failure:
       InternalWriteMessage(1, this->_internal_columnsloc(i), target, stream);
   }
 
-  // .coordinator.column Last_R_G = 2;
+  // .coordinator.column last_r_g = 2;
   if (this->has_last_r_g()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1499,14 +1500,14 @@ size_t StripeLocation::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .coordinator.column columnsLoc = 1;
+  // repeated .coordinator.column columnsloc = 1;
   total_size += 1UL * this->_internal_columnsloc_size();
   for (const auto& msg : this->columnsloc_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // .coordinator.column Last_R_G = 2;
+  // .coordinator.column last_r_g = 2;
   if (this->has_last_r_g()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(

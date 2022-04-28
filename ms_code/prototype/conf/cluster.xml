@@ -5,15 +5,74 @@
             <node uri="0.0.0.0:10001" />
             <node uri="0.0.0.0:10002" />
             <node uri="0.0.0.0:10003" />
+            <node uri="0.0.0.0:10004" />
+            <node uri="0.0.0.0:10005" />
         </nodes>
     </cluster>
     <cluster id="1" gateway="0.0.0.0:10004">
         <nodes>
-            <node uri="0.0.0.0:10004" />
-            <node uri="0.0.0.0:10005" />
-            <node uri="0.0.0.0:10006" />
+            <node uri="0.0.0.0:20004" />
+            <node uri="0.0.0.0:20005" />
+            <node uri="0.0.0.0:20006" />
+            <node uri="0.0.0.0:20007" />
+            <node uri="0.0.0.0:20008" />
         </nodes>
     </cluster>
+    <cluster id="2" gateway="0.0.0.0:10007">
+        <nodes>
+            <node uri="0.0.0.0:30007" />
+            <node uri="0.0.0.0:30008" />
+            <node uri="0.0.0.0:30009" />
+            <node uri="0.0.0.0:30010" />
+            <node uri="0.0.0.0:30011" />
+        </nodes>
+    </cluster>
+    <cluster id="3" gateway="0.0.0.0:10010">
+        <nodes>
+            <node uri="0.0.0.0:40010" />
+            <node uri="0.0.0.0:40011" />
+            <node uri="0.0.0.0:40012" />
+            <node uri="0.0.0.0:40013" />
+            <node uri="0.0.0.0:40014" />
+        </nodes>
+    </cluster>
+    <cluster id="4" gateway="0.0.0.0:10013">
+        <nodes>
+            <node uri="0.0.0.0:50014" />
+            <node uri="0.0.0.0:50015" />
+            <node uri="0.0.0.0:50016" />
+            <node uri="0.0.0.0:50017" />
+            <node uri="0.0.0.0:50018" />
+        </nodes>
+    </cluster>
+    <cluster id="5" gateway="0.0.0.0:10013">
+        <nodes>
+            <node uri="0.0.0.0:60014" />
+            <node uri="0.0.0.0:60015" />
+            <node uri="0.0.0.0:60016" />
+            <node uri="0.0.0.0:60017" />
+            <node uri="0.0.0.0:60018" />
+        </nodes>
+    </cluster>
+    <cluster id="6" gateway="0.0.0.0:10013">
+        <nodes>
+            <node uri="0.0.0.0:70014" />
+            <node uri="0.0.0.0:70015" />
+            <node uri="0.0.0.0:70016" />
+            <node uri="0.0.0.0:70017" />
+            <node uri="0.0.0.0:70018" />
+        </nodes>
+    </cluster>
+    <cluster id="7" gateway="0.0.0.0:10013">
+        <nodes>
+            <node uri="0.0.0.0:80014" />
+            <node uri="0.0.0.0:80015" />
+            <node uri="0.0.0.0:80016" />
+            <node uri="0.0.0.0:80017" />
+            <node uri="0.0.0.0:80018" />
+        </nodes>
+    </cluster>
+    
     <!-- <cluster id="2" gateway="0.0.0.0:10007">
         <nodes>
             <node uri="0.0.0.0:10008" />

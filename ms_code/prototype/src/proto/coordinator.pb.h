@@ -800,10 +800,10 @@ class column :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataLocFieldNumber = 1,
+    kDatalocFieldNumber = 1,
     kLastCFieldNumber = 2,
   };
-  // repeated string dataLoc = 1;
+  // repeated string dataloc = 1;
   int dataloc_size() const;
   private:
   int _internal_dataloc_size() const;
@@ -827,7 +827,7 @@ class column :
   std::string* _internal_add_dataloc();
   public:
 
-  // string Last_c = 2;
+  // string last_c = 2;
   void clear_last_c();
   const std::string& last_c() const;
   void set_last_c(const std::string& value);
@@ -961,10 +961,10 @@ class StripeLocation :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kColumnsLocFieldNumber = 1,
+    kColumnslocFieldNumber = 1,
     kLastRGFieldNumber = 2,
   };
-  // repeated .coordinator.column columnsLoc = 1;
+  // repeated .coordinator.column columnsloc = 1;
   int columnsloc_size() const;
   private:
   int _internal_columnsloc_size() const;
@@ -982,7 +982,7 @@ class StripeLocation :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::column >&
       columnsloc() const;
 
-  // .coordinator.column Last_R_G = 2;
+  // .coordinator.column last_r_g = 2;
   bool has_last_r_g() const;
   private:
   bool _internal_has_last_r_g() const;
@@ -1325,7 +1325,7 @@ inline void StripeId::set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // column
 
-// repeated string dataLoc = 1;
+// repeated string dataloc = 1;
 inline int column::_internal_dataloc_size() const {
   return dataloc_.size();
 }
@@ -1336,83 +1336,83 @@ inline void column::clear_dataloc() {
   dataloc_.Clear();
 }
 inline std::string* column::add_dataloc() {
-  // @@protoc_insertion_point(field_add_mutable:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_add_mutable:coordinator.column.dataloc)
   return _internal_add_dataloc();
 }
 inline const std::string& column::_internal_dataloc(int index) const {
   return dataloc_.Get(index);
 }
 inline const std::string& column::dataloc(int index) const {
-  // @@protoc_insertion_point(field_get:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_get:coordinator.column.dataloc)
   return _internal_dataloc(index);
 }
 inline std::string* column::mutable_dataloc(int index) {
-  // @@protoc_insertion_point(field_mutable:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_mutable:coordinator.column.dataloc)
   return dataloc_.Mutable(index);
 }
 inline void column::set_dataloc(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_set:coordinator.column.dataloc)
   dataloc_.Mutable(index)->assign(value);
 }
 inline void column::set_dataloc(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_set:coordinator.column.dataloc)
   dataloc_.Mutable(index)->assign(std::move(value));
 }
 inline void column::set_dataloc(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   dataloc_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_set_char:coordinator.column.dataloc)
 }
 inline void column::set_dataloc(int index, const char* value, size_t size) {
   dataloc_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_set_pointer:coordinator.column.dataloc)
 }
 inline std::string* column::_internal_add_dataloc() {
   return dataloc_.Add();
 }
 inline void column::add_dataloc(const std::string& value) {
   dataloc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_add:coordinator.column.dataloc)
 }
 inline void column::add_dataloc(std::string&& value) {
   dataloc_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_add:coordinator.column.dataloc)
 }
 inline void column::add_dataloc(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   dataloc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_add_char:coordinator.column.dataloc)
 }
 inline void column::add_dataloc(const char* value, size_t size) {
   dataloc_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_add_pointer:coordinator.column.dataloc)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 column::dataloc() const {
-  // @@protoc_insertion_point(field_list:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_list:coordinator.column.dataloc)
   return dataloc_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 column::mutable_dataloc() {
-  // @@protoc_insertion_point(field_mutable_list:coordinator.column.dataLoc)
+  // @@protoc_insertion_point(field_mutable_list:coordinator.column.dataloc)
   return &dataloc_;
 }
 
-// string Last_c = 2;
+// string last_c = 2;
 inline void column::clear_last_c() {
   last_c_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& column::last_c() const {
-  // @@protoc_insertion_point(field_get:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_get:coordinator.column.last_c)
   return _internal_last_c();
 }
 inline void column::set_last_c(const std::string& value) {
   _internal_set_last_c(value);
-  // @@protoc_insertion_point(field_set:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_set:coordinator.column.last_c)
 }
 inline std::string* column::mutable_last_c() {
-  // @@protoc_insertion_point(field_mutable:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_mutable:coordinator.column.last_c)
   return _internal_mutable_last_c();
 }
 inline const std::string& column::_internal_last_c() const {
@@ -1426,26 +1426,26 @@ inline void column::set_last_c(std::string&& value) {
   
   last_c_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_set_rvalue:coordinator.column.last_c)
 }
 inline void column::set_last_c(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   last_c_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_set_char:coordinator.column.last_c)
 }
 inline void column::set_last_c(const char* value, size_t size) {
   
   last_c_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_set_pointer:coordinator.column.last_c)
 }
 inline std::string* column::_internal_mutable_last_c() {
   
   return last_c_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* column::release_last_c() {
-  // @@protoc_insertion_point(field_release:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_release:coordinator.column.last_c)
   
   return last_c_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1456,14 +1456,14 @@ inline void column::set_allocated_last_c(std::string* last_c) {
     
   }
   last_c_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), last_c);
-  // @@protoc_insertion_point(field_set_allocated:coordinator.column.Last_c)
+  // @@protoc_insertion_point(field_set_allocated:coordinator.column.last_c)
 }
 
 // -------------------------------------------------------------------
 
 // StripeLocation
 
-// repeated .coordinator.column columnsLoc = 1;
+// repeated .coordinator.column columnsloc = 1;
 inline int StripeLocation::_internal_columnsloc_size() const {
   return columnsloc_.size();
 }
@@ -1474,35 +1474,35 @@ inline void StripeLocation::clear_columnsloc() {
   columnsloc_.Clear();
 }
 inline ::coordinator::column* StripeLocation::mutable_columnsloc(int index) {
-  // @@protoc_insertion_point(field_mutable:coordinator.StripeLocation.columnsLoc)
+  // @@protoc_insertion_point(field_mutable:coordinator.StripeLocation.columnsloc)
   return columnsloc_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::column >*
 StripeLocation::mutable_columnsloc() {
-  // @@protoc_insertion_point(field_mutable_list:coordinator.StripeLocation.columnsLoc)
+  // @@protoc_insertion_point(field_mutable_list:coordinator.StripeLocation.columnsloc)
   return &columnsloc_;
 }
 inline const ::coordinator::column& StripeLocation::_internal_columnsloc(int index) const {
   return columnsloc_.Get(index);
 }
 inline const ::coordinator::column& StripeLocation::columnsloc(int index) const {
-  // @@protoc_insertion_point(field_get:coordinator.StripeLocation.columnsLoc)
+  // @@protoc_insertion_point(field_get:coordinator.StripeLocation.columnsloc)
   return _internal_columnsloc(index);
 }
 inline ::coordinator::column* StripeLocation::_internal_add_columnsloc() {
   return columnsloc_.Add();
 }
 inline ::coordinator::column* StripeLocation::add_columnsloc() {
-  // @@protoc_insertion_point(field_add:coordinator.StripeLocation.columnsLoc)
+  // @@protoc_insertion_point(field_add:coordinator.StripeLocation.columnsloc)
   return _internal_add_columnsloc();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::column >&
 StripeLocation::columnsloc() const {
-  // @@protoc_insertion_point(field_list:coordinator.StripeLocation.columnsLoc)
+  // @@protoc_insertion_point(field_list:coordinator.StripeLocation.columnsloc)
   return columnsloc_;
 }
 
-// .coordinator.column Last_R_G = 2;
+// .coordinator.column last_r_g = 2;
 inline bool StripeLocation::_internal_has_last_r_g() const {
   return this != internal_default_instance() && last_r_g_ != nullptr;
 }
@@ -1521,11 +1521,11 @@ inline const ::coordinator::column& StripeLocation::_internal_last_r_g() const {
       &::coordinator::_column_default_instance_);
 }
 inline const ::coordinator::column& StripeLocation::last_r_g() const {
-  // @@protoc_insertion_point(field_get:coordinator.StripeLocation.Last_R_G)
+  // @@protoc_insertion_point(field_get:coordinator.StripeLocation.last_r_g)
   return _internal_last_r_g();
 }
 inline ::coordinator::column* StripeLocation::release_last_r_g() {
-  // @@protoc_insertion_point(field_release:coordinator.StripeLocation.Last_R_G)
+  // @@protoc_insertion_point(field_release:coordinator.StripeLocation.last_r_g)
   
   ::coordinator::column* temp = last_r_g_;
   last_r_g_ = nullptr;
@@ -1540,7 +1540,7 @@ inline ::coordinator::column* StripeLocation::_internal_mutable_last_r_g() {
   return last_r_g_;
 }
 inline ::coordinator::column* StripeLocation::mutable_last_r_g() {
-  // @@protoc_insertion_point(field_mutable:coordinator.StripeLocation.Last_R_G)
+  // @@protoc_insertion_point(field_mutable:coordinator.StripeLocation.last_r_g)
   return _internal_mutable_last_r_g();
 }
 inline void StripeLocation::set_allocated_last_r_g(::coordinator::column* last_r_g) {
@@ -1559,7 +1559,7 @@ inline void StripeLocation::set_allocated_last_r_g(::coordinator::column* last_r
     
   }
   last_r_g_ = last_r_g;
-  // @@protoc_insertion_point(field_set_allocated:coordinator.StripeLocation.Last_R_G)
+  // @@protoc_insertion_point(field_set_allocated:coordinator.StripeLocation.last_r_g)
 }
 
 // -------------------------------------------------------------------

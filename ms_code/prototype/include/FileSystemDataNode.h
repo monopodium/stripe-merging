@@ -40,6 +40,7 @@ namespace productcode
         std::shared_ptr<spdlog::logger> m_dn_logger;
 
         std::string m_server_address = "0.0.0.0:50051";
+        int m_Defaultblocksize = 64;
 
         public:
             FileSystemDataNode(int mDefaultblocksize = 64,
@@ -47,7 +48,8 @@ namespace productcode
                         const std::string mConfPath = "./conf/configuration.xml", 
                         const std::string mLogPath = "./log/logFile.txt",
                         const std::string mDataPath = "./data/") 
-                        : /*m_server_address(server_address),*/
+                        : m_Defaultblocksize(mDefaultblocksize),
+                        m_server_address(server_address),
                         m_conf_path(mConfPath),
                         m_log_path(mLogPath),
                         m_data_path(mDataPath),
@@ -186,7 +188,7 @@ namespace productcode
                         {
                             m_dnfromcnimpl_logger->error("datanode cnstub initialize failed!");
                             std::cout<<"datanode cnstub initialize failed!"<<std::endl;
-                        return;
+                            return;
                         }
                         m_dnfromcnimpl_logger->info("datanode cnstub initialize success!");
                         std::cout<<"datanode cnstub initialize success!"<<std::endl;

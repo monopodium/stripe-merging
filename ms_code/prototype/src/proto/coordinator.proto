@@ -7,6 +7,9 @@ package coordinator;
 
 service CoordinatorService{
     rpc setplacementpolicy(SetPlacementCommand) returns(RequestResult);
+    rpc uploadStripe (StripeInfo) returns(StripeDetail);
+    rpc deleteStripe(StripeId) returns(RequestResult);
+    rpc uploadCheck(StripeInfo) returns(RequestResult);
 
 }
 
@@ -40,14 +43,14 @@ message StripeId{
 }
  
 message column{
-  repeated string dataLoc = 1;
-  string Last_c = 2;
+  repeated string dataloc = 1;
+  string last_c = 2;
 }
 
 
 message StripeLocation{
-  repeated column columnsLoc = 1;
-  column Last_R_G = 2;
+  repeated column columnsloc = 1;
+  column last_r_g = 2;
 }
 message StripeDetail{
   StripeLocation stripelocation = 1;

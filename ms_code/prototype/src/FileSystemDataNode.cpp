@@ -28,6 +28,7 @@ namespace productcode {
                                                   const ::datanode::CheckaliveCMD *request,
                                                   ::datanode::RequestResult *response) 
     {
+        std::cout<<"m_initialized"<<m_initialized<<std::endl;
         if (m_initialized) 
         {
             response->set_trueorfalse(true);

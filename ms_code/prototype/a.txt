@@ -1,0 +1,42 @@
+parameters: r 3 c 4 placement 1 block_size[KB] 65536 stripe_number 1
+Fail to set placement policy0
+Fail to set placement policy1
+Fail to set placement policy2
+Fail to set placement policy0
+./teststripes/teststripe0.txt
+k 19
+File:/home/ms/Documents/my_code/ms_code/prototype/src/FileSystemClient.cpp, Line:232, Function:UploadStripe, hello world
+File:/home/ms/Documents/my_code/ms_code/prototype/src/FileSystemClient.cpp, Line:30, Function:encode, hello world
+j 0 j*c+i 0
+j 1 j*c+i 4
+j 2 j*c+i 8
+j 0 j*c+i 1
+j 1 j*c+i 5
+j 2 j*c+i 9
+j 0 j*c+i 2
+j 1 j*c+i 6
+j 2 j*c+i 10
+j 0 j*c+i 3
+j 1 j*c+i 7
+j 2 j*c+i 11
+j 0 i*c+j 0
+j 1 i*c+j 1
+j 2 i*c+j 2
+j 3 i*c+j 3
+j 0 i*c+j 4
+j 1 i*c+j 5
+j 2 i*c+j 6
+j 3 i*c+j 7
+j 0 i*c+j 8
+j 1 i*c+j 9
+j 2 i*c+j 10
+j 3 i*c+j 11
+File:/home/ms/Documents/my_code/ms_code/prototype/src/FileSystemClient.cpp, Line:236, Function:UploadStripe, hello world
+columnblks[i]0
+columnblks[i]1
+columnblks[i]2
+columnblks[i]3
+rowblks[i]0
+rowblks[i]1
+rowblks[i]2
+Gblks[0]

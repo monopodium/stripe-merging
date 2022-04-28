@@ -11,7 +11,8 @@
 
 #include <spdlog/sinks/basic_file_sink.h>
 #include <grpc++/create_channel.h>
-
+#define DEBUG_INFO(format, ...) printf("File:%s, Line:%d, Function:%s, %s", \
+	__FILE__, __LINE__ , __FUNCTION__, ##__VA_ARGS__);
 namespace Product 
 {
     class FileSystemCoordinator 
@@ -49,8 +50,21 @@ namespace Product
                     std::unordered_map<std::string, DataNodeInfo> m_dn_info;//cluster.xml
 
                     std::shared_ptr<spdlog::logger> m_cn_logger;
+                    std::atomic<int> m_fs_nextstripeid{0};
 
+                    typedef std::unordered_map<int,std::string> one_column_loc;
+                    struct stripe_locaion
+                    {
+                        int stripe_id = 0;
+                        std::unordered_map<int,one_column_loc> colums_locations;
+                        one_column_loc G_location;
+
+                    };
+                    std::unordered_map<int,stripe_locaion> all_stripe_location;
                     PLACE m_placementpolicy{PLACE::RANDOM};
+                    int m_dis_place_count = 0;
+                    typedef std::vector<std::string> StripeLocations;
+                    std::unordered_map<int,StripeLocations> stripe_in_updating;
                 public:                    
 
                     CoordinatorImpl()=default;
@@ -64,9 +78,20 @@ namespace Product
                                             const::coordinator::SetPlacementCommand *request,
                                             ::coordinator::RequestResult *response) override;
 
+                    grpc::Status uploadStripe(::grpc::ServerContext *context, const ::coordinator::StripeInfo *request,
+                                      ::coordinator::StripeDetail *response) override;
+
+                    grpc::Status uploadCheck(::grpc::ServerContext *context, const::coordinator::StripeInfo *request,
+                                     ::coordinator::RequestResult *response) override;
+
+                    grpc::Status deleteStripe(::grpc::ServerContext *context, const::coordinator::StripeId *request,
+                                      ::coordinator::RequestResult *response) override;
+
+                    bool askDNhandling(const std::string & dnuri,int stripeid,bool isupload=true,bool ispart=false);
                     const std::shared_ptr<spdlog::logger> &getMCnLogger() const;
                     const std::string &getMFsUri() const;
                     const std::unordered_map<std::string, DataNodeInfo> &getMDnInfo() const;
+                    
                     
                     bool initialize();
                     bool initcluster() ;

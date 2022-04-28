@@ -35,31 +35,24 @@ int main(int argc, char** argv){
 
     Product::FileSystemClient fileSystemClient;
 
-    //1:Random 2:DIS 3:AGG
-    switch (placement)
+    //0:Random 1:DIS 2:AGG
+    if(placement==0)
     {
-        case 1:
-            {
-            fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::RANDOM);
-            }
-        case 2:
-            {
-            fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::DIS);
-            }
-        case 3:
-            {
-            fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::AGG);
-            }
-        default:
-            {
-            fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::RANDOM);
-            }
+        fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::RANDOM);
+    }
+    if(placement==1)
+    {
+        fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::DIS);
+    }
+    if(placement==2)
+    {
+        fileSystemClient.SetPlacementPolicy(Product::FileSystemClient::PLACE::AGG);
     }
 
     for (int i = 0; i < stripe_number; ++i) 
     {
-        Product::RandomStripeGenerator("teststripe" + std::to_string(i) + ".txt", r*c, block_size * 1024);
-        fileSystemClient.UploadStripe("teststripe" + std::to_string(i) + ".txt", i, {r, c, block_size}, true);
+        Product::RandomStripeGenerator("./teststripes/teststripe" + std::to_string(i) + ".txt", r*c, block_size * 1024);
+        fileSystemClient.UploadStripe("./teststripes/teststripe" + std::to_string(i) + ".txt", i, {r, c, block_size}, true);
     }
 
     return 0;

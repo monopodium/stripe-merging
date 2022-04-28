@@ -46,6 +46,13 @@ class CoordinatorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> PrepareAsyncsetplacementpolicy(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(PrepareAsyncsetplacementpolicyRaw(context, request, cq));
     }
+    virtual ::grpc::Status uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::StripeDetail* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>> AsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>>(AsyncuploadStripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>> PrepareAsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>>(PrepareAsyncuploadStripeRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -61,6 +68,18 @@ class CoordinatorService final {
       #else
       virtual void setplacementpolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      virtual void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -72,6 +91,8 @@ class CoordinatorService final {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* AsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* PrepareAsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>* AsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>* PrepareAsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -82,6 +103,13 @@ class CoordinatorService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> PrepareAsyncsetplacementpolicy(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(PrepareAsyncsetplacementpolicyRaw(context, request, cq));
+    }
+    ::grpc::Status uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::StripeDetail* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>> AsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>>(AsyncuploadStripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>> PrepareAsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>>(PrepareAsyncuploadStripeRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -98,6 +126,18 @@ class CoordinatorService final {
       #else
       void setplacementpolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) override;
+      void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -111,7 +151,10 @@ class CoordinatorService final {
     class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* AsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* PrepareAsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>* AsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>* PrepareAsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_setplacementpolicy_;
+    const ::grpc::internal::RpcMethod rpcmethod_uploadStripe_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -120,6 +163,7 @@ class CoordinatorService final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status setplacementpolicy(::grpc::ServerContext* context, const ::coordinator::SetPlacementCommand* request, ::coordinator::RequestResult* response);
+    virtual ::grpc::Status uploadStripe(::grpc::ServerContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_setplacementpolicy : public BaseClass {
@@ -141,7 +185,27 @@ class CoordinatorService final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_setplacementpolicy<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_uploadStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_uploadStripe() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_uploadStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestuploadStripe(::grpc::ServerContext* context, ::coordinator::StripeInfo* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::StripeDetail>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_setplacementpolicy<WithAsyncMethod_uploadStripe<Service > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_setplacementpolicy : public BaseClass {
    private:
@@ -189,11 +253,58 @@ class CoordinatorService final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_uploadStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_uploadStripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeInfo, ::coordinator::StripeDetail>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response) { return this->uploadStripe(context, request, response); }));}
+    void SetMessageAllocatorFor_uploadStripe(
+        ::grpc::experimental::MessageAllocator< ::coordinator::StripeInfo, ::coordinator::StripeDetail>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeInfo, ::coordinator::StripeDetail>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_uploadStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* uploadStripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* uploadStripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_setplacementpolicy<Service > CallbackService;
+  typedef ExperimentalWithCallbackMethod_setplacementpolicy<ExperimentalWithCallbackMethod_uploadStripe<Service > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_setplacementpolicy<Service > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_setplacementpolicy<ExperimentalWithCallbackMethod_uploadStripe<Service > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_setplacementpolicy : public BaseClass {
    private:
@@ -207,6 +318,23 @@ class CoordinatorService final {
     }
     // disable synchronous version of this method
     ::grpc::Status setplacementpolicy(::grpc::ServerContext* /*context*/, const ::coordinator::SetPlacementCommand* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_uploadStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_uploadStripe() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_uploadStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -229,6 +357,26 @@ class CoordinatorService final {
     }
     void Requestsetplacementpolicy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_uploadStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_uploadStripe() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_uploadStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestuploadStripe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -270,6 +418,44 @@ class CoordinatorService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_uploadStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_uploadStripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->uploadStripe(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_uploadStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* uploadStripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* uploadStripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_setplacementpolicy : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -289,9 +475,29 @@ class CoordinatorService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status Streamedsetplacementpolicy(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::SetPlacementCommand,::coordinator::RequestResult>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_setplacementpolicy<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_uploadStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_uploadStripe() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::coordinator::StripeInfo, ::coordinator::StripeDetail>(std::bind(&WithStreamedUnaryMethod_uploadStripe<BaseClass>::StreameduploadStripe, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_uploadStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreameduploadStripe(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::StripeInfo,::coordinator::StripeDetail>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_setplacementpolicy<WithStreamedUnaryMethod_uploadStripe<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_setplacementpolicy<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_setplacementpolicy<WithStreamedUnaryMethod_uploadStripe<Service > > StreamedService;
 };
 
 class FromDataNode final {
