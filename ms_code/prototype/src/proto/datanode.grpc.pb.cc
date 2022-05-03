@@ -40,6 +40,11 @@ FromDataNode::Service::~Service() {
 static const char* FromCoodinator_method_names[] = {
   "/datanode.FromCoodinator/checkalive",
   "/datanode.FromCoodinator/clearallstripe",
+  "/datanode.FromCoodinator/handleupload",
+  "/datanode.FromCoodinator/handledownload",
+  "/datanode.FromCoodinator/dodownload",
+  "/datanode.FromCoodinator/dopartialcoding",
+  "/datanode.FromCoodinator/clearstripe",
 };
 
 std::unique_ptr< FromCoodinator::Stub> FromCoodinator::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -51,6 +56,11 @@ std::unique_ptr< FromCoodinator::Stub> FromCoodinator::NewStub(const std::shared
 FromCoodinator::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_checkalive_(FromCoodinator_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_clearallstripe_(FromCoodinator_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_handleupload_(FromCoodinator_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_handledownload_(FromCoodinator_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_dodownload_(FromCoodinator_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_dopartialcoding_(FromCoodinator_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_clearstripe_(FromCoodinator_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status FromCoodinator::Stub::checkalive(::grpc::ClientContext* context, const ::datanode::CheckaliveCMD& request, ::datanode::RequestResult* response) {
@@ -109,6 +119,146 @@ void FromCoodinator::Stub::experimental_async::clearallstripe(::grpc::ClientCont
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_clearallstripe_, context, request, false);
 }
 
+::grpc::Status FromCoodinator::Stub::handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::datanode::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_handleupload_, context, request, response);
+}
+
+void FromCoodinator::Stub::experimental_async::handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_handleupload_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_handleupload_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_handleupload_, context, request, response, reactor);
+}
+
+void FromCoodinator::Stub::experimental_async::handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_handleupload_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::AsynchandleuploadRaw(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_handleupload_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::PrepareAsynchandleuploadRaw(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_handleupload_, context, request, false);
+}
+
+::grpc::Status FromCoodinator::Stub::handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::datanode::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_handledownload_, context, request, response);
+}
+
+void FromCoodinator::Stub::experimental_async::handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_handledownload_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_handledownload_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_handledownload_, context, request, response, reactor);
+}
+
+void FromCoodinator::Stub::experimental_async::handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_handledownload_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::AsynchandledownloadRaw(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_handledownload_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::PrepareAsynchandledownloadRaw(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_handledownload_, context, request, false);
+}
+
+::grpc::Status FromCoodinator::Stub::dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::datanode::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_dodownload_, context, request, response);
+}
+
+void FromCoodinator::Stub::experimental_async::dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_dodownload_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_dodownload_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_dodownload_, context, request, response, reactor);
+}
+
+void FromCoodinator::Stub::experimental_async::dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_dodownload_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::AsyncdodownloadRaw(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_dodownload_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::PrepareAsyncdodownloadRaw(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_dodownload_, context, request, false);
+}
+
+::grpc::Status FromCoodinator::Stub::dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::datanode::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_dopartialcoding_, context, request, response);
+}
+
+void FromCoodinator::Stub::experimental_async::dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_dopartialcoding_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_dopartialcoding_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_dopartialcoding_, context, request, response, reactor);
+}
+
+void FromCoodinator::Stub::experimental_async::dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_dopartialcoding_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::AsyncdopartialcodingRaw(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_dopartialcoding_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::PrepareAsyncdopartialcodingRaw(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_dopartialcoding_, context, request, false);
+}
+
+::grpc::Status FromCoodinator::Stub::clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::datanode::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_clearstripe_, context, request, response);
+}
+
+void FromCoodinator::Stub::experimental_async::clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_clearstripe_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_clearstripe_, context, request, response, std::move(f));
+}
+
+void FromCoodinator::Stub::experimental_async::clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_clearstripe_, context, request, response, reactor);
+}
+
+void FromCoodinator::Stub::experimental_async::clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_clearstripe_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::AsyncclearstripeRaw(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_clearstripe_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* FromCoodinator::Stub::PrepareAsyncclearstripeRaw(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::datanode::RequestResult>::Create(channel_.get(), cq, rpcmethod_clearstripe_, context, request, false);
+}
+
 FromCoodinator::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FromCoodinator_method_names[0],
@@ -120,6 +270,31 @@ FromCoodinator::Service::Service() {
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< FromCoodinator::Service, ::datanode::ClearallstripeCMD, ::datanode::RequestResult>(
           std::mem_fn(&FromCoodinator::Service::clearallstripe), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FromCoodinator_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FromCoodinator::Service, ::datanode::UploadCMD, ::datanode::RequestResult>(
+          std::mem_fn(&FromCoodinator::Service::handleupload), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FromCoodinator_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FromCoodinator::Service, ::datanode::DownloadCMD, ::datanode::RequestResult>(
+          std::mem_fn(&FromCoodinator::Service::handledownload), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FromCoodinator_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FromCoodinator::Service, ::datanode::DodownloadCMD, ::datanode::RequestResult>(
+          std::mem_fn(&FromCoodinator::Service::dodownload), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FromCoodinator_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FromCoodinator::Service, ::datanode::NodesLocation, ::datanode::RequestResult>(
+          std::mem_fn(&FromCoodinator::Service::dopartialcoding), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FromCoodinator_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FromCoodinator::Service, ::datanode::StripeId, ::datanode::RequestResult>(
+          std::mem_fn(&FromCoodinator::Service::clearstripe), this)));
 }
 
 FromCoodinator::Service::~Service() {
@@ -133,6 +308,41 @@ FromCoodinator::Service::~Service() {
 }
 
 ::grpc::Status FromCoodinator::Service::clearallstripe(::grpc::ServerContext* context, const ::datanode::ClearallstripeCMD* request, ::datanode::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FromCoodinator::Service::handleupload(::grpc::ServerContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FromCoodinator::Service::handledownload(::grpc::ServerContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FromCoodinator::Service::dodownload(::grpc::ServerContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FromCoodinator::Service::dopartialcoding(::grpc::ServerContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FromCoodinator::Service::clearstripe(::grpc::ServerContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response) {
   (void) context;
   (void) request;
   (void) response;

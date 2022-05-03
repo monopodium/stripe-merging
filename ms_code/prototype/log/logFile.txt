@@ -1,0 +1,45 @@
+[2022-05-03 16:24:46.384] [cn_logger] [info] 0.0.0.0:10001 is living !
+[2022-05-03 16:24:46.385] [cn_logger] [info] 0.0.0.0:10002 is living !
+[2022-05-03 16:24:46.385] [cn_logger] [info] 0.0.0.0:10003 is living !
+[2022-05-03 16:24:46.385] [cn_logger] [info] 0.0.0.0:10004 is living !
+[2022-05-03 16:24:46.386] [cn_logger] [info] 0.0.0.0:10005 is living !
+[2022-05-03 16:24:46.386] [cn_logger] [info] 0.0.0.0:10006 is living !
+[2022-05-03 16:24:46.386] [cn_logger] [info] 0.0.0.0:10007 is living !
+[2022-05-03 16:24:46.387] [cn_logger] [info] 0.0.0.0:10008 is living !
+[2022-05-03 16:24:46.388] [cn_logger] [info] cn initialize success!
+[2022-05-03 16:24:46.389] [cn_logger] [info] Server listening on 0.0.0.0:33333
+[2022-05-03 16:24:48.404] [cn_logger] [info] ask 0.0.0.0:10007 to wait for client
+[2022-05-03 16:24:48.405] [cn_logger] [info] ask 0.0.0.0:10008 to wait for client
+[2022-05-03 16:24:48.405] [cn_logger] [info] ask 0.0.0.0:10005 to wait for client
+[2022-05-03 16:24:48.405] [cn_logger] [info] ask 0.0.0.0:10006 to wait for client
+[2022-05-03 16:24:48.405] [cn_logger] [info] ask 0.0.0.0:10001 to wait for client
+[2022-05-03 16:24:48.405] [cn_logger] [info] ask 0.0.0.0:10003 to wait for client
+[2022-05-03 16:24:48.407] [cn_logger] [info] datanode ipv4:127.0.0.1:43892 receive block of stripe 0 from client successfully!
+[2022-05-03 16:24:48.407] [cn_logger] [info] datanode ipv4:127.0.0.1:43894 receive block of stripe 0 from client successfully!
+[2022-05-03 16:24:48.407] [cn_logger] [info] datanode ipv4:127.0.0.1:43896 receive block of stripe 0 from client successfully!
+[2022-05-03 16:24:48.407] [cn_logger] [info] datanode ipv4:127.0.0.1:43898 receive block of stripe 0 from client successfully!
+[2022-05-03 16:24:48.409] [cn_logger] [info] ask 0.0.0.0:10005 to wait for client
+[2022-05-03 16:24:48.409] [cn_logger] [info] datanode ipv4:127.0.0.1:43900 receive block of stripe 0 from client successfully!
+[2022-05-03 16:24:48.409] [cn_logger] [info] datanode ipv4:127.0.0.1:43902 receive block of stripe 0 from client successfully!
+[2022-05-03 16:24:48.409] [cn_logger] [info] ask 0.0.0.0:10004 to wait for client
+[2022-05-03 16:24:48.409] [cn_logger] [info] ask 0.0.0.0:10001 to wait for client
+[2022-05-03 16:24:48.409] [cn_logger] [info] ask 0.0.0.0:10003 to wait for client
+[2022-05-03 16:24:48.410] [cn_logger] [info] ask 0.0.0.0:10008 to wait for client
+[2022-05-03 16:24:48.410] [cn_logger] [info] ask 0.0.0.0:10007 to wait for client
+[2022-05-03 16:24:48.410] [cn_logger] [info] ask 0.0.0.0:10007 to wait for client
+[2022-05-03 16:24:48.410] [cn_logger] [info] ask 0.0.0.0:10008 to wait for client
+[2022-05-03 16:24:48.410] [cn_logger] [info] ask 0.0.0.0:10005 to wait for client
+[2022-05-03 16:24:48.411] [cn_logger] [info] ask 0.0.0.0:10006 to wait for client
+[2022-05-03 16:24:48.411] [cn_logger] [info] ask 0.0.0.0:10001 to wait for client
+[2022-05-03 16:24:48.411] [cn_logger] [info] ask 0.0.0.0:10003 to wait for client
+[2022-05-03 16:24:48.412] [cn_logger] [info] datanode ipv4:127.0.0.1:43902 receive block of stripe 1 from client successfully!
+[2022-05-03 16:24:48.412] [cn_logger] [info] datanode ipv4:127.0.0.1:43900 receive block of stripe 1 from client successfully!
+[2022-05-03 16:24:48.412] [cn_logger] [info] datanode ipv4:127.0.0.1:43904 receive block of stripe 1 from client successfully!
+[2022-05-03 16:24:48.412] [cn_logger] [info] datanode ipv4:127.0.0.1:43894 receive block of stripe 1 from client successfully!
+[2022-05-03 16:24:48.412] [cn_logger] [info] datanode ipv4:127.0.0.1:43896 receive block of stripe 1 from client successfully!
+[2022-05-03 16:24:48.412] [cn_logger] [info] ask 0.0.0.0:10003 to wait for client
+[2022-05-03 16:24:48.412] [cn_logger] [info] datanode ipv4:127.0.0.1:43898 receive block of stripe 1 from client successfully!
+[2022-05-03 16:24:48.412] [cn_logger] [info] ask 0.0.0.0:10001 to wait for client
+[2022-05-03 16:24:48.413] [cn_logger] [info] ask 0.0.0.0:10008 to wait for client
+[2022-05-03 16:24:48.413] [cn_logger] [info] ask 0.0.0.0:10007 to wait for client
+[2022-05-03 16:24:48.413] [cn_logger] [info] ask 0.0.

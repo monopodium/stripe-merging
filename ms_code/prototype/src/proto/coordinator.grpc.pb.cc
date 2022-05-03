@@ -23,7 +23,12 @@ namespace coordinator {
 
 static const char* CoordinatorService_method_names[] = {
   "/coordinator.CoordinatorService/setplacementpolicy",
+  "/coordinator.CoordinatorService/deleteStripe",
+  "/coordinator.CoordinatorService/uploadCheck",
+  "/coordinator.CoordinatorService/reportblockupload",
   "/coordinator.CoordinatorService/uploadStripe",
+  "/coordinator.CoordinatorService/listStripe",
+  "/coordinator.CoordinatorService/listAllStripes",
 };
 
 std::unique_ptr< CoordinatorService::Stub> CoordinatorService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -34,7 +39,12 @@ std::unique_ptr< CoordinatorService::Stub> CoordinatorService::NewStub(const std
 
 CoordinatorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_setplacementpolicy_(CoordinatorService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_uploadStripe_(CoordinatorService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_deleteStripe_(CoordinatorService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_uploadCheck_(CoordinatorService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_reportblockupload_(CoordinatorService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_uploadStripe_(CoordinatorService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_listStripe_(CoordinatorService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_listAllStripes_(CoordinatorService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CoordinatorService::Stub::setplacementpolicy(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::coordinator::RequestResult* response) {
@@ -65,6 +75,90 @@ void CoordinatorService::Stub::experimental_async::setplacementpolicy(::grpc::Cl
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_setplacementpolicy_, context, request, false);
 }
 
+::grpc::Status CoordinatorService::Stub::deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_deleteStripe_, context, request, response);
+}
+
+void CoordinatorService::Stub::experimental_async::deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_deleteStripe_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_deleteStripe_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_deleteStripe_, context, request, response, reactor);
+}
+
+void CoordinatorService::Stub::experimental_async::deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_deleteStripe_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* CoordinatorService::Stub::AsyncdeleteStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_deleteStripe_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* CoordinatorService::Stub::PrepareAsyncdeleteStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_deleteStripe_, context, request, false);
+}
+
+::grpc::Status CoordinatorService::Stub::uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_uploadCheck_, context, request, response);
+}
+
+void CoordinatorService::Stub::experimental_async::uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_uploadCheck_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_uploadCheck_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_uploadCheck_, context, request, response, reactor);
+}
+
+void CoordinatorService::Stub::experimental_async::uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_uploadCheck_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* CoordinatorService::Stub::AsyncuploadCheckRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_uploadCheck_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* CoordinatorService::Stub::PrepareAsyncuploadCheckRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_uploadCheck_, context, request, false);
+}
+
+::grpc::Status CoordinatorService::Stub::reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::RequestResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_reportblockupload_, context, request, response);
+}
+
+void CoordinatorService::Stub::experimental_async::reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_reportblockupload_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_reportblockupload_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_reportblockupload_, context, request, response, reactor);
+}
+
+void CoordinatorService::Stub::experimental_async::reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_reportblockupload_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* CoordinatorService::Stub::AsyncreportblockuploadRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_reportblockupload_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* CoordinatorService::Stub::PrepareAsyncreportblockuploadRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::RequestResult>::Create(channel_.get(), cq, rpcmethod_reportblockupload_, context, request, false);
+}
+
 ::grpc::Status CoordinatorService::Stub::uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::StripeDetail* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_uploadStripe_, context, request, response);
 }
@@ -93,6 +187,62 @@ void CoordinatorService::Stub::experimental_async::uploadStripe(::grpc::ClientCo
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::StripeDetail>::Create(channel_.get(), cq, rpcmethod_uploadStripe_, context, request, false);
 }
 
+::grpc::Status CoordinatorService::Stub::listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::StripeLocation* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_listStripe_, context, request, response);
+}
+
+void CoordinatorService::Stub::experimental_async::listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_listStripe_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_listStripe_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_listStripe_, context, request, response, reactor);
+}
+
+void CoordinatorService::Stub::experimental_async::listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_listStripe_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>* CoordinatorService::Stub::AsynclistStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::StripeLocation>::Create(channel_.get(), cq, rpcmethod_listStripe_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>* CoordinatorService::Stub::PrepareAsynclistStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::StripeLocation>::Create(channel_.get(), cq, rpcmethod_listStripe_, context, request, false);
+}
+
+::grpc::Status CoordinatorService::Stub::listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::coordinator::StripeDetails* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_listAllStripes_, context, request, response);
+}
+
+void CoordinatorService::Stub::experimental_async::listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_listAllStripes_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_listAllStripes_, context, request, response, std::move(f));
+}
+
+void CoordinatorService::Stub::experimental_async::listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_listAllStripes_, context, request, response, reactor);
+}
+
+void CoordinatorService::Stub::experimental_async::listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_listAllStripes_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>* CoordinatorService::Stub::AsynclistAllStripesRaw(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::StripeDetails>::Create(channel_.get(), cq, rpcmethod_listAllStripes_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>* CoordinatorService::Stub::PrepareAsynclistAllStripesRaw(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::coordinator::StripeDetails>::Create(channel_.get(), cq, rpcmethod_listAllStripes_, context, request, false);
+}
+
 CoordinatorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CoordinatorService_method_names[0],
@@ -102,8 +252,33 @@ CoordinatorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CoordinatorService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CoordinatorService::Service, ::coordinator::StripeId, ::coordinator::RequestResult>(
+          std::mem_fn(&CoordinatorService::Service::deleteStripe), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CoordinatorService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CoordinatorService::Service, ::coordinator::StripeInfo, ::coordinator::RequestResult>(
+          std::mem_fn(&CoordinatorService::Service::uploadCheck), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CoordinatorService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CoordinatorService::Service, ::coordinator::StripeId, ::coordinator::RequestResult>(
+          std::mem_fn(&CoordinatorService::Service::reportblockupload), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CoordinatorService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< CoordinatorService::Service, ::coordinator::StripeInfo, ::coordinator::StripeDetail>(
           std::mem_fn(&CoordinatorService::Service::uploadStripe), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CoordinatorService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CoordinatorService::Service, ::coordinator::StripeId, ::coordinator::StripeLocation>(
+          std::mem_fn(&CoordinatorService::Service::listStripe), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CoordinatorService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CoordinatorService::Service, ::coordinator::ListAllStripeCMD, ::coordinator::StripeDetails>(
+          std::mem_fn(&CoordinatorService::Service::listAllStripes), this)));
 }
 
 CoordinatorService::Service::~Service() {
@@ -116,7 +291,42 @@ CoordinatorService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status CoordinatorService::Service::deleteStripe(::grpc::ServerContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CoordinatorService::Service::uploadCheck(::grpc::ServerContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CoordinatorService::Service::reportblockupload(::grpc::ServerContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status CoordinatorService::Service::uploadStripe(::grpc::ServerContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CoordinatorService::Service::listStripe(::grpc::ServerContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CoordinatorService::Service::listAllStripes(::grpc::ServerContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response) {
   (void) context;
   (void) request;
   (void) response;

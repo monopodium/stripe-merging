@@ -42,24 +42,36 @@ namespace productcode
         std::string m_server_address = "0.0.0.0:50051";
         int m_Defaultblocksize = 64;
 
+        int m_datanodeupload_port = 10241;//socket listenning
+        int m_datanodedownload_port = 10242;//socket listenning
+
         public:
             FileSystemDataNode(int mDefaultblocksize = 64,
+                        int datanodeupload_port = 10241,
+                        int datanodedownload_port = 10242,
                         const std::string server_address = "0.0.0.0:50051",
                         const std::string mConfPath = "./conf/configuration.xml", 
                         const std::string mLogPath = "./log/logFile.txt",
                         const std::string mDataPath = "./data/") 
                         : m_Defaultblocksize(mDefaultblocksize),
+                        m_datanodeupload_port(datanodeupload_port),
+                        m_datanodedownload_port(datanodedownload_port),
                         m_server_address(server_address),
                         m_conf_path(mConfPath),
                         m_log_path(mLogPath),
                         m_data_path(mDataPath),
                         m_dn_fromcnimpl_ptr(
-                            FileSystemDataNode::FromCoordinatorImpl::getptr(mConfPath, mDataPath)
+                            FileSystemDataNode::FromCoordinatorImpl::getptr(datanodeupload_port,datanodedownload_port,server_address,mConfPath, mDataPath)
                             ) 
             {
                 //m_dn_fromcnimpl_ptr->setMDefaultblocksize(mDefaultblocksize);
                 m_dn_logger = spdlog::basic_logger_mt("datanode_logger", mLogPath, false);
-                
+                //m_dn_fromcnimpl_ptr->SetAddress(m_server_address);
+                // int datanodedownload_offset_upload = 100;
+                // auto ipaddr = Product::uritoipaddr(m_server_address);
+                // auto port = std::stoi(m_server_address.substr(m_server_address.find(':') + 1));
+                // m_datanodeupload_port = port + datanodedownload_offset_upload;
+                // m_datanodedownload_port = port + 
                 //m_datanodeupload_port = m_dn_fromcnimpl_ptr->getMDatanodeUploadPort();
                 //m_datanodedownload_port = m_dn_fromcnimpl_ptr->getMDatanodeDownloadPort();
             }
@@ -115,10 +127,10 @@ namespace productcode
                 private:
                     std::string m_coordinator_IP;
                     std::string m_server_address = "0.0.0.0:50051";
-
+                    int m_datanodeupload_port;
+                    int m_datanodedownload_port;
+                    asio::io_context m_ioservice;
                     std::string m_confpath;
-                    
-
                     std::string m_datapath;//to read write clear ...
                                             //optional a buffer of a packet size ?
                     std::shared_ptr<spdlog::logger> m_dnfromcnimpl_logger;
@@ -126,7 +138,7 @@ namespace productcode
                     std::shared_ptr<coordinator::FromDataNode::Stub> m_cnfromdn_stub;
 
                     bool m_initialized{false};
-
+                    
                     bool initialize() 
                     {
                         //parse /conf/configuration.xml
@@ -164,13 +176,21 @@ namespace productcode
                         m_coordinator_IP, grpc::InsecureChannelCredentials())));
                         return true;
                     }
-                    FromCoordinatorImpl(const std::string &mConfPath,
-                                        const std::string &mDatapath
-                                        /*const std::string &mserver_address*/)
-                                        : m_confpath(mConfPath),
+                    FromCoordinatorImpl(const int datanodeupload_port = 10241,
+                                        const int datanodedownload_port = 10242,
+                                        const std::string server_address = "0.0.0.0:50051",
+                                        const std::string &mConfPath = "./log/logFile.txt",
+                                        const std::string &mDatapath = "./data/"
+                                        )
+                                        : m_datanodeupload_port(datanodeupload_port),
+                                        m_datanodedownload_port(datanodedownload_port),
+                                        m_server_address(server_address),
+                                        m_confpath(mConfPath),
                                         m_datapath(mDatapath)
-                                        /*m_server_address(mserver_address)*/
+                                       
                     {
+                        std::cout<<"m_datanodeupload_port"<<m_datanodeupload_port<<std::endl;
+                        std::cout<<"m_datanodedownload_port"<<m_datanodedownload_port<<std::endl;
                         m_dnfromcnimpl_logger = spdlog::basic_logger_mt("dncnimpl", "./log/logFile2.txt", true);
                         if (!std::filesystem::exists(std::filesystem::path(m_datapath))) 
                         {
@@ -195,6 +215,21 @@ namespace productcode
                         m_initialized = true;
                     }
                     FromCoordinatorImpl();
+                    static std::shared_ptr<asio::ip::tcp::acceptor> prepareacceptor(
+                        FileSystemDataNode::FromCoordinatorImpl & dnimpl,short port) 
+                    {
+                        using namespace asio;
+                        static std::unordered_map<int,std::shared_ptr<asio::ip::tcp::acceptor>> mappings;
+                        if(mappings.contains(port)) 
+                        {
+                            return mappings[port];
+                        }
+                        auto acptptr = std::make_shared<ip::tcp::acceptor>(dnimpl.m_ioservice,
+                                            ip::tcp::endpoint(asio::ip::tcp::v4(), port),true);
+                        mappings.insert({port,acptptr});
+
+                        return acptptr;//auto move
+                    }
                 
                     
                 public:
@@ -211,11 +246,20 @@ namespace productcode
                     grpc::Status checkalive(::grpc::ServerContext *context, const ::datanode::CheckaliveCMD *request,
                                     ::datanode::RequestResult *response) override;
 
+                    grpc::Status handleupload(::grpc::ServerContext *context, const ::datanode::UploadCMD *request,
+                                             ::datanode::RequestResult *response) override;
+                    std::shared_ptr<productcode::FileSystemDataNode::FromCoordinatorImpl> get_sharedholder();
+                    
+                    grpc::Status clearstripe(::grpc::ServerContext *context, const ::datanode::StripeId *request,
+                                     ::datanode::RequestResult *response) override;
                     bool isMInitialized() const;
                     bool isInitialized() const;
                     void setInitialized(bool initialized);
-
+                    
                     const std::string &getMDatapath() const;
+                    void SetAddress(std::string server_address) {
+                        m_server_address = server_address;
+                    }
                     
 
             };
@@ -225,6 +269,7 @@ namespace productcode
             };
 
             std::shared_ptr<FromCoordinatorImpl> m_dn_fromcnimpl_ptr;
+            
 
     };
 }

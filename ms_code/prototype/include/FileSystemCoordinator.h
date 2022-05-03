@@ -58,6 +58,9 @@ namespace Product
                         int stripe_id = 0;
                         std::unordered_map<int,one_column_loc> colums_locations;
                         one_column_loc G_location;
+                        bool issave = false;
+                        int r;
+                        int c;
 
                     };
                     std::unordered_map<int,stripe_locaion> all_stripe_location;
@@ -65,6 +68,8 @@ namespace Product
                     int m_dis_place_count = 0;
                     typedef std::vector<std::string> StripeLocations;
                     std::unordered_map<int,StripeLocations> stripe_in_updating;
+                    std::mutex m_stripeupdatingcount_mtx;
+                    std::condition_variable m_updatingcond;
                 public:                    
 
                     CoordinatorImpl()=default;
@@ -87,12 +92,20 @@ namespace Product
                     grpc::Status deleteStripe(::grpc::ServerContext *context, const::coordinator::StripeId *request,
                                       ::coordinator::RequestResult *response) override;
 
-                    bool askDNhandling(const std::string & dnuri,int stripeid,bool isupload=true,bool ispart=false);
+                    void updatestripeupdatingcounter(int stripeid, std::string fromdatanode_uri);
+                    bool askDNhandling(const std::string & dnuri,int stripeid,int blocksize_KB,bool isupload=true,bool ispart=false);
                     const std::shared_ptr<spdlog::logger> &getMCnLogger() const;
                     const std::string &getMFsUri() const;
                     const std::unordered_map<std::string, DataNodeInfo> &getMDnInfo() const;
                     
-                    
+                    grpc::Status reportblockupload(::grpc::ServerContext *context,const coordinator::StripeId *request,
+                                             ::coordinator::RequestResult *response) override;
+
+                    grpc::Status listAllStripes(::grpc::ServerContext *context, const::coordinator::ListAllStripeCMD *request,
+                                        ::coordinator::StripeDetails *response) override;
+
+                    grpc::Status downloadStripe(::grpc::ServerContext *context, const::coordinator::StripeId *request,
+                                        ::coordinator::StripeDetail *response) override;                   
                     bool initialize();
                     bool initcluster() ;
                     bool clearexistedstripes();

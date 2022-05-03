@@ -22,6 +22,7 @@ namespace Product{
 
         std::string m_coordinator_IP ;
         std::string m_log_path ;
+        int m_datanodeupload_offset = 100;
         public:
             FileSystemClient(const std::string & p_conf_path="./conf/configuration.xml",
                         const std::string & p_fsimage_path="./meta/fsimage.xml")
@@ -62,6 +63,9 @@ namespace Product{
             ~FileSystemClient() = default;
             bool SetPlacementPolicy(PLACE p);
             bool UploadStripe(const std::string &srcpath, int stripeid,const ECSchema &ecschema, bool trivial);
+            std::vector<StripeInfo> ListStripes() const;
+            bool DownLoadStripe(const std::string & srcpath,const std::string & dstpath,int stripe_id,int blk_size);
+            static bool FileSystemClient::PrintStripeDetail(const coordinator::StripeDetail stripeDetail);
         private:
             std::unique_ptr<coordinator::CoordinatorService::Stub> m_coordinator_ptr;
 

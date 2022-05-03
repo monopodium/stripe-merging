@@ -36,7 +36,7 @@ namespace Product
         if (!std::filesystem::exists(std::filesystem::path{m_conf_path})) 
         {
             m_cn_logger->error("configure file not exist!");
-            std::cout<<"configure file not exist!"<<std::endl;
+            std::cout<<"configure file not exist!"<<std::endl<<std::flush;
             return;
         }
 
@@ -45,16 +45,16 @@ namespace Product
         if (!init_res) 
         {
             m_cn_logger->error("configuration file error!");
-            std::cout<<"configuration file error!"<<std::endl;
+            std::cout<<"configuration file error!"<<std::endl<<std::flush;
             return;
         }
 
         auto cluster_res = initcluster();
-        std::cout<<"m_cluster_info"<<m_cluster_info.size()<<std::endl;
+        std::cout<<"m_cluster_info"<<m_cluster_info.size()<<std::endl<<std::flush;
 
         if (!cluster_res) {
             m_cn_logger->error("cluster file error!");
-            std::cout<<"cluster file error!"<<std::endl;
+            std::cout<<"cluster file error!"<<std::endl<<std::flush;
             return;
         }
 
@@ -62,73 +62,73 @@ namespace Product
 
         /* init all stubs to dn */
 
-        // for (int i = 0; i < m_cluster_info_backup.size(); ++i) 
-        // {
-        //     auto dn_alive = std::vector<std::string>();
-        //     for (auto p:m_cluster_info_backup[i].datanodesuri) 
-        //     {
-        //         //filter out offline DNs
-        //         //by call stubs checkalive
-        //         auto _stub = datanode::FromCoodinator::NewStub(
-        //                 grpc::CreateChannel(p, grpc::InsecureChannelCredentials()));
+        for (int i = 0; i < m_cluster_info_backup.size(); ++i) 
+        {
+            auto dn_alive = std::vector<std::string>();
+            for (auto p:m_cluster_info_backup[i].datanodesuri) 
+            {
+                //filter out offline DNs
+                //by call stubs checkalive
+                auto _stub = datanode::FromCoodinator::NewStub(
+                        grpc::CreateChannel(p, grpc::InsecureChannelCredentials()));
 
-        //         int retry = 3;//default redetect 3 times
+                int retry = 3;//default redetect 3 times
 
-        //         while (0 != retry) 
-        //         {
-        //             grpc::ClientContext clientContext;
-        //             datanode::CheckaliveCMD Cmd;
-        //             datanode::RequestResult result;
-        //             grpc::Status status;
+                while (0 != retry) 
+                {
+                    grpc::ClientContext clientContext;
+                    datanode::CheckaliveCMD Cmd;
+                    datanode::RequestResult result;
+                    grpc::Status status;
 
-        //             status = _stub->checkalive(&clientContext, Cmd, &result);
+                    status = _stub->checkalive(&clientContext, Cmd, &result);
 
-        //             if (status.ok()) 
-        //             {
-        //                 m_cn_logger->info("{} is living !", p);
-        //                 std::cout<<p<<"{} is living !"<<std::endl;
+                    if (status.ok()) 
+                    {
+                        m_cn_logger->info("{} is living !", p);
+                        std::cout<<p<<"{} is living !"<<std::endl<<std::flush;
 
-        //                 if (!result.trueorfalse()) 
-        //                 {
-        //                     m_cn_logger->warn("but not initialized!");
-        //                     std::cout<<"but not initialized!"<<std::endl;
-        //                     // 3 * 10s is deadline
-        //                     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        //                     retry--;
-        //                 } 
-        //                 else
-        //                 {
-        //                     dn_alive.push_back(p);
-        //                     m_dn_ptrs.insert(std::make_pair(p, std::move(_stub)));
-        //                     retry = 0;
-        //                 }
-        //             } else 
-        //             {
-        //                 m_dn_info.erase(p);
-        //                 std::cout<<p<<"{} is not living !"<<std::endl;
-        //                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        //                 retry--;
-        //             }
+                        if (!result.trueorfalse()) 
+                        {
+                            m_cn_logger->warn("but not initialized!");
+                            std::cout<<"but not initialized!"<<std::endl<<std::flush;
+                            // 3 * 10s is deadline
+                            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                            retry--;
+                        } 
+                        else
+                        {
+                            dn_alive.push_back(p);
+                            m_dn_ptrs.insert(std::make_pair(p, std::move(_stub)));
+                            retry = 0;
+                        }
+                    } else 
+                    {
+                        m_dn_info.erase(p);
+                        std::cout<<p<<"{} is not living !"<<std::endl<<std::flush;
+                        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                        retry--;
+                    }
 
-        //         }
-        //     }
-        //     if (!dn_alive.empty()) 
-        //     {   
-        //         m_cluster_info[i].datanodesuri = dn_alive;
-        //     }
-        //     else {
-        //         //whole cluster offline
-        //         std::cout<<"m_cluster_info.erase(i)"<<std::endl;
-        //         m_cluster_info.erase(i);
-        //     }
-        //     //timeout,this node is unreachable ...
-        // }
+                }
+            }
+            if (!dn_alive.empty()) 
+            {   
+                m_cluster_info[i].datanodesuri = dn_alive;
+            }
+            else {
+                //whole cluster offline
+                std::cout<<"m_cluster_info.erase(i)"<<std::endl<<std::flush;
+                m_cluster_info.erase(i);
+            }
+            //timeout,this node is unreachable ...
+        }
 
         if (!std::filesystem::exists(std::filesystem::path{mMetaPath})) 
         {
             auto clear_res = clearexistedstripes();
             if (!clear_res) {
-                std::cout<<"Metapath {} does not exists , clear file system failed!"<<std::endl;
+                std::cout<<"Metapath {} does not exists , clear file system failed!"<<std::endl<<std::flush;
                 m_cn_logger->error("Metapath {} does not exists , clear file system failed!", mMetaPath);
                 return;
             }
@@ -141,7 +141,7 @@ namespace Product
             clearexistedstripes();
         }
         m_cn_logger->info("cn initialize success!");
-        std::cout<<"cn initialize success!"<<std::endl;
+        std::cout<<"cn initialize success!"<<std::endl<<std::flush;
 
         m_initialized = true;
     }
@@ -162,7 +162,7 @@ namespace Product
             auto propvalue = propattr.value();
             if (std::string{"coordinator_IP"} == propname) {
                 m_coordinator_IP = propvalue;
-                std::cout << "my coordinator uri :" << propvalue << std::endl;
+                std::cout << "my coordinator uri :" << propvalue << std::endl<<std::flush;
             }
         }
 
@@ -237,10 +237,12 @@ namespace Product
         return true;
     }
     grpc::Status FileSystemCoordinator::CoordinatorImpl::uploadStripe(::grpc::ServerContext *context, const ::coordinator::StripeInfo *request,
-                                               ::coordinator::StripeDetail *response)
+                                     ::coordinator::StripeDetail *response)
                         
     {
+        std::scoped_lock slk(m_stripeupdatingcount_mtx);
         int stripeid = request->stripeid();
+        int blocksize_KB = request->blksize();
         auto retstripeloc = response->mutable_stripelocation();
         int r = request->stripe_r();
         int c = request->stripe_c();
@@ -248,19 +250,22 @@ namespace Product
         auto stripeId = response->mutable_stripeid();
         stripeId->set_stripeid(stripeid);
         //int totalcluster = m_cluster_info.size();
+        std::cout<<"stripeid"<<stripeid<<"blocksize_KB"<<blocksize_KB<<std::endl<<std::flush;
         
 
         int c_number = m_cluster_info.size();
         std::vector<int> totalcluster(c_number, 0);
         std::iota(totalcluster.begin(), totalcluster.end(), 0);
-        std::cout<<"m_placementpolicy"<<m_placementpolicy<<std::endl;
-        std::cout<<"PLACE::RANDOM"<<PLACE::RANDOM<<std::endl;
-        std::cout<<"PLACE::AGG"<<PLACE::AGG<<std::endl;
-        std::cout<<"PLACE::DIS"<<PLACE::DIS<<std::endl;
-        std::cout<<"clusters"<<c_number<<std::endl;
+        std::cout<<"m_placementpolicy"<<m_placementpolicy<<std::endl<<std::flush;
+        std::cout<<"PLACE::RANDOM"<<PLACE::RANDOM<<std::endl<<std::flush;
+        std::cout<<"PLACE::AGG"<<PLACE::AGG<<std::endl<<std::flush;
+        std::cout<<"PLACE::DIS"<<PLACE::DIS<<std::endl<<std::flush;
+        std::cout<<"clusters"<<c_number<<std::endl<<std::flush;
 
         stripe_locaion stripe_locaion_new;
         stripe_locaion_new.stripe_id = stripeid;
+        stripe_locaion_new.r = r;
+        stripe_locaion_new.c = c;
         if (m_placementpolicy == PLACE::RANDOM) 
         {
             srand (unsigned (time(0))+stripeid);
@@ -403,28 +408,28 @@ namespace Product
         for(const auto &stripe_item : all_stripe_location)
         {
             
-            std::cout<<"stripe_id:"<<stripe_item.first<<std::endl;
-            std::cout<<"stripe_id:"<<stripe_item.second.stripe_id<<std::endl;
+            std::cout<<"stripe_id:"<<stripe_item.first<<std::endl<<std::flush;
+            std::cout<<"stripe_id:"<<stripe_item.second.stripe_id<<std::endl<<std::flush;
             for(const auto &column_item : stripe_item.second.colums_locations)
             {
                 std::cout<<"column_item:"<<column_item.first<<" ";
                 for(const auto &block_item : column_item.second)
                 {
                     std::cout<<" "<<block_item.first<<" ";
-                    std::cout<<" "<<block_item.second<<std::endl;
+                    std::cout<<" "<<block_item.second<<std::endl<<std::flush;
                     stripe_in_updating[stripeid].push_back(block_item.second);
                 }
             }
             for(const auto &column_item : stripe_item.second.G_location)
             {
                 std::cout<<"column_item_last:"<<column_item.first<<" ";
-                std::cout<<" "<<column_item.second<<std::endl;
+                std::cout<<" "<<column_item.second<<std::endl<<std::flush;
                 stripe_in_updating[stripeid].push_back(column_item.second);
             }
         }
         for(const auto &node_uri : stripe_in_updating[stripeid])
         {
-            if (!askDNhandling(node_uri, stripeid)) return grpc::Status::CANCELLED;
+            if (!askDNhandling(node_uri, stripeid,blocksize_KB)) return grpc::Status::CANCELLED;
         }
         /*print to check end*/
         // auto[cand_dn, cand_lp, cand_gp] = placement_resolve(
@@ -433,25 +438,29 @@ namespace Product
     }
 
     bool FileSystemCoordinator::CoordinatorImpl::askDNhandling(
-        const std::string &dnuri, int stripeid, bool isupload, bool ispart) 
+        const std::string &dnuri, int stripeid, int blocksize_KB,  bool isupload, bool ispart) 
     {
         m_cn_logger->info("ask {} to wait for client", dnuri);
+        std::cout<<"ask {"<<dnuri<<"} to wait for client"<<std::endl<<std::flush;
         grpc::ClientContext handlectx;
         datanode::RequestResult handlereqres;
         grpc::Status status;
         if (isupload) {
             datanode::UploadCMD uploadCmd;
             if (ispart) uploadCmd.set_aspart(ispart);
+            uploadCmd.set_blksize_kb(blocksize_KB);
             status = m_dn_ptrs[dnuri]->handleupload(&handlectx, uploadCmd, &handlereqres);
         } else {
             datanode::DownloadCMD downloadCmd;
             if (ispart) downloadCmd.set_aspart(ispart);
+            //uploadCmd.set_blksize_kb(blocksize_KB);
             status = m_dn_ptrs[dnuri]->handledownload(&handlectx, downloadCmd, &handlereqres);
         }
         if (status.ok()) {
+             std::cout << "rpc askDNhandlestripe success!" << dnuri << std::endl<<std::flush;
             return handlereqres.trueorfalse();
         } else {
-            std::cout << "rpc askDNhandlestripe error!" << dnuri << std::endl;
+            std::cout << "rpc askDNhandlestripe error!" << dnuri << std::endl<<std::flush;
             m_cn_logger->error("rpc askDNhandlestripe error!");
             return false;
         }
@@ -461,20 +470,21 @@ namespace Product
     (::grpc::ServerContext *context, const ::coordinator::StripeId *request,::coordinator::RequestResult *response) 
     {
 
-        std::cout << "delete stripe" << request->stripeid() << std::endl;
-        
-        // for (auto dnuri:stripe_in_updating[request->stripeid()]) {
-        //     grpc::ClientContext deletestripectx;
-        //     datanode::StripeId stripeId;
-        //     stripeId.set_stripeid(request->stripeid());
-        //     datanode::RequestResult deleteres;
-        //     m_dn_ptrs[dnuri.first]->clearstripe(&deletestripectx, stripeId, &deleteres);
-        //     //m_dn_info[dnuri.first].stored_stripeid.erase(request->stripeid());
-        // }
-        // //delete
-        // stripe_in_updating.erase(request->stripeid());
-        // stripe_in_updatingcounter.erase(request->stripeid());
-        // m_fs_image.erase(request->stripeid());
+        std::cout << "delete stripe" << request->stripeid() << std::endl<<std::flush;
+        std::scoped_lock slk(m_stripeupdatingcount_mtx);
+        for (auto dnuri:stripe_in_updating[request->stripeid()]) {
+            grpc::ClientContext deletestripectx;
+            datanode::StripeId stripeId;
+            stripeId.set_stripeid(request->stripeid());
+            datanode::RequestResult deleteres;
+            m_dn_ptrs[dnuri]->clearstripe(&deletestripectx, stripeId, &deleteres);
+            //m_dn_info[dnuri.first].stored_stripeid.erase(request->stripeid());
+        }
+        //delete
+        stripe_in_updating.erase(request->stripeid());
+        all_stripe_location.erase(request->stripeid());
+        //stripe_in_updatingcounter.erase(request->stripeid());
+        //m_fs_image.erase(request->stripeid());
 
         return grpc::Status::OK;
     }
@@ -482,13 +492,51 @@ namespace Product
                                               ::coordinator::RequestResult *response) {
         //handle client upload check
         //check if stripeid success or not
-        // std::unique_lock uniqueLock(m_stripeupdatingcount_mtx);
-        // //60s deadline
+        std::unique_lock uniqueLock(m_stripeupdatingcount_mtx);
+        //60s deadline
+        int stripeid = request->stripeid();
         // auto res = m_updatingcond.wait_for(uniqueLock, std::chrono::seconds(60), [&]() {
         //     return !stripe_in_updatingcounter.contains(request->stripeid());
         // });
-        // response->set_trueorfalse(res);
-        // if (res) flushhistory();
+        std::cout<<"uploadCheck2"<<stripeid<<std::endl<<std::flush;
+        auto res = m_updatingcond.wait_for(uniqueLock, std::chrono::seconds(60), [&]() {
+            return all_stripe_location.find(stripeid)->second.issave;
+        });
+        // if(all_stripe_location.find(stripeid)==all_stripe_location.end())
+        // {
+        //     if(all_stripe_location.find(stripeid)->second.issave)
+        //     {
+        //         std::cout<<"uploadCheck1"<<stripeid<<std::endl<<std::flush;
+        //         response->set_trueorfalse(true);
+        //         return grpc::Status::OK;
+        //     }
+        //     response->set_trueorfalse(false);
+        //     std::cout<<"uploadCheck2"<<stripeid<<std::endl<<std::flush;
+        //     return grpc::Status::OK;
+            
+        // }
+        // std::cout<<"uploadCheck3"<<stripeid<<std::endl<<std::flush;
+        // return grpc::Status::CANCELLED;
+        std::cout<<"uploadCheck3"<<stripeid<<std::endl<<std::flush;
+        response->set_trueorfalse(res);
+        //if (res) flushhistory();
+        return grpc::Status::OK;
+        
+    }
+
+    grpc::Status FileSystemCoordinator::CoordinatorImpl::reportblockupload(::grpc::ServerContext *context,
+                                                    const ::coordinator::StripeId *request,
+                                                    ::coordinator::RequestResult *response) 
+    {
+        std::cout << "datanode " << context->peer() << " receive block of stripe " << request->stripeid()
+                  << " from client successfully!\n";
+        m_cn_logger->info("datanode {} receive block of stripe {} from client successfully!", context->peer(),
+                          request->stripeid());
+//        std::scoped_lock lockGuard(m_stripeupdatingcount_mtx);
+        //updatestripeupdatingcounter(request->stripeid(), context->peer());
+        std::scoped_lock lockGuard(m_stripeupdatingcount_mtx);
+        all_stripe_location[request->stripeid()].issave = true;
+        response->set_trueorfalse(true);
         return grpc::Status::OK;
     }
 
@@ -496,7 +544,7 @@ namespace Product
     {
         m_cn_logger->info("cn im-memory image flush back to metapath!");
         //flushhistory();
-        std::cout<<"to be finished"<<std::endl;
+        std::cout<<"to be finished"<<std::endl<<std::flush;
     }
     bool FileSystemCoordinator::CoordinatorImpl::isMInitialized() const 
     {
@@ -523,7 +571,7 @@ namespace Product
     // {
     //     m_cn_logger->info("cn im-memory image flush back to metapath!");
     //     //flushhistory();
-    //     std::cout<<"to be finished"<<std::endl;
+    //     std::cout<<"to be finished"<<std::endl<<std::flush;
     // }
 
     FileSystemCoordinator::CooNodeFromDNImpl::CooNodeFromDNImpl() 
@@ -546,19 +594,107 @@ namespace Product
                                                      ::coordinator::RequestResult *response) {
         if (coordinator::SetPlacementCommand_PLACE_RANDOM == request->place()) {
             m_placementpolicy = PLACE::RANDOM;
-            std::cout<<"m_placementpolicy = PLACE::RANDOM"<<std::endl;
+            std::cout<<"m_placementpolicy = PLACE::RANDOM"<<std::endl<<std::flush;
             
         }
         if (coordinator::SetPlacementCommand_PLACE_DIS == request->place()) {
             m_placementpolicy = PLACE::DIS;
-            std::cout<<"m_placementpolicy = PLACE::DIS"<<std::endl;
+            std::cout<<"m_placementpolicy = PLACE::DIS"<<std::endl<<std::flush;
         } 
         if (coordinator::SetPlacementCommand_PLACE_AGG == request->place())
         {
             m_placementpolicy = PLACE::AGG;
-            std::cout<<"m_placementpolicy = PLACE::AGG"<<std::endl;
+            std::cout<<"m_placementpolicy = PLACE::AGG"<<std::endl<<std::flush;
         }
         response->set_trueorfalse(true);
+        return grpc::Status::OK;
+    }
+
+    grpc::Status FileSystemCoordinator::CoordinatorImpl::listAllStripes(::grpc::ServerContext *context,
+                                                              const ::coordinator::ListAllStripeCMD *request,
+                                                              ::coordinator::StripeDetails *response) 
+    {
+        
+        std::scoped_lock slk(m_stripeupdatingcount_mtx);
+        //std::scoped_lock lockGuard(m_stripeupdatingcount_mtx);
+        for(const auto &stripe_item : all_stripe_location)
+        {
+            std::cout<<"listAllStripes1 "<<all_stripe_location.size()<<std::endl<<std::flush;
+            //coordinator::StripeDetail Stripedetail;
+            auto Stripedetail = response->add_stripedetail();
+            auto stripeId = Stripedetail->mutable_stripeid();
+            stripeId->set_stripeid(stripe_item.first);
+            std::cout<<"listAllStripes2 "<<stripe_item.second.r<<std::endl<<std::flush;
+            auto retstripeloc = Stripedetail->mutable_stripelocation();
+
+            std::cout<<"stripe_id:"<<stripe_item.first<<std::endl<<std::flush;
+            std::cout<<"stripe_id:"<<stripe_item.second.stripe_id<<std::endl<<std::flush;
+            for(const auto &column_item : stripe_item.second.colums_locations)
+            {
+                auto column_new = retstripeloc->add_columnsloc();
+                std::cout<<"column_item:"<<column_item.first<<" ";
+                for(const auto &block_item : column_item.second)
+                {
+                    std::cout<<" "<<block_item.first<<" ";
+                    std::cout<<" "<<block_item.second<<std::endl<<std::flush;
+                    if(block_item.first!=stripe_item.second.r){
+                        column_new->add_dataloc(block_item.second);
+                    }else{
+                        column_new->set_last_c(block_item.second);
+                    }
+                    
+                    
+                }
+            }
+            auto column_new = retstripeloc->mutable_last_r_g();
+            for(const auto &column_item : stripe_item.second.G_location)
+            {
+                
+                std::cout<<"column_item_last:"<<column_item.first<<" ";
+                std::cout<<" "<<column_item.second<<std::endl<<std::flush;
+                if(column_item.first!=stripe_item.second.r){
+                        column_new->add_dataloc(column_item.second);
+                    }else{
+                        column_new->set_last_c(column_item.second);
+                    }
+                
+            }
+        }
+        return grpc::Status::OK;
+    }
+
+    grpc::Status FileSystemCoordinator::CoordinatorImpl::downloadStripe
+    (::grpc::ServerContext *context, const ::coordinator::StripeId *request,
+    ::coordinator::StripeDetail *response) 
+    {
+
+        std::scoped_lock slk(m_stripeupdatingcount_mtx);
+        auto retstripeloc = response->mutable_stripelocation();
+        int stripeid = request->stripeid();
+        std::vector<std::string> datauris;//extractdatablklocation(request->stripeid());
+        std::vector<std::string> lpuris;//extractlpblklocation(request->stripeid());
+        std::vector<std::string> gpuris;//extractgpblklocation(request->stripeid());
+        goto serverequest;
+
+        serverequest:
+        int start = 0;
+        while (start < m_fs_image[stripeid].size() &&
+               m_fs_image[stripeid][start] != "d") {
+            datauris.push_back(m_fs_image[stripeid][start]);
+            start++;
+        }
+        //serve download
+        bool res = askDNservepull(std::unordered_set<std::string>(datauris.cbegin(), datauris.cend()), "", stripeid);
+        if (!res) {
+            m_cn_logger->info("datanodes can not serve client download request!");
+            return grpc::Status::CANCELLED;
+        }
+
+        for (int i = 0; i < datauris.size(); ++i) {
+            retstripeloc->add_dataloc(datauris[i]);
+        }
+
+        std::cout << "returned locations!\n";
         return grpc::Status::OK;
     }
 

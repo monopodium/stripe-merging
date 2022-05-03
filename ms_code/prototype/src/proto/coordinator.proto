@@ -7,16 +7,23 @@ package coordinator;
 
 service CoordinatorService{
     rpc setplacementpolicy(SetPlacementCommand) returns(RequestResult);
-    rpc uploadStripe (StripeInfo) returns(StripeDetail);
     rpc deleteStripe(StripeId) returns(RequestResult);
     rpc uploadCheck(StripeInfo) returns(RequestResult);
+    rpc reportblockupload(StripeId)returns(RequestResult);
+    rpc uploadStripe (StripeInfo) returns(StripeDetail);
+    rpc listStripe(StripeId) returns(StripeLocation);
+    rpc listAllStripes(ListAllStripeCMD) returns(StripeDetails);
+    rpc downloadStripe (StripeId) returns(StripeDetail);
+    
 
 }
 
 service FromDataNode{
 
 }
+message ListAllStripeCMD{
 
+}
 message SetPlacementCommand{
   enum PLACE{
     RANDOM = 0;
@@ -55,4 +62,7 @@ message StripeLocation{
 message StripeDetail{
   StripeLocation stripelocation = 1;
   StripeId stripeid = 2;
+}
+message StripeDetails{
+  repeated StripeDetail stripedetail = 1;
 }

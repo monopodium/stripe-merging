@@ -12,8 +12,22 @@ service FromCoodinator
 {
     rpc checkalive(CheckaliveCMD ) returns(RequestResult);
     rpc clearallstripe(ClearallstripeCMD) returns(RequestResult);
+    rpc handleupload(UploadCMD) returns(RequestResult);
+    rpc handledownload(DownloadCMD) returns(RequestResult);
+    rpc dodownload(DodownloadCMD) returns(RequestResult);
+    rpc dopartialcoding(NodesLocation) returns(RequestResult);
+    rpc clearstripe(StripeId) returns(RequestResult);
 }
 
+message DodownloadCMD{
+  string NodesUri = 1;
+  int32 NodesStripeId = 2;
+  int32 NodesBlkId = 3;
+  int32 TargetStripeId = 4;
+  int32 TargetBlks = 5;
+  bool IsPart = 6;
+  bool AsPart =7;
+}
 message CheckaliveCMD
 {
 
@@ -25,4 +39,34 @@ message ClearallstripeCMD
 message RequestResult
 {
   bool trueorfalse=1;
+}
+message StripeId{
+  int32 stripeid = 1;
+}
+message StripeLocation{
+  repeated string dataLoc = 1;
+  repeated string localparityLoc = 2;
+  repeated string globalparityLoc = 3;
+}
+
+message NodesLocation{
+  repeated string NodesUri = 1;
+  repeated int32 NodesStripeId = 2;
+  repeated int32 NodesBlkId = 3;
+  repeated bool IsPart = 4;
+  int32 TargetStripeId = 5;
+  int32 TargetBlks = 6;
+  bool AsPart =7;
+}
+
+message UploadCMD{
+  bool AsPart = 1;
+  int32 stripeid = 2;
+  int32 blksize_kb = 3;
+}
+message DownloadCMD{
+  bool AsPart = 1;
+}
+message ListAllStripeCMD{
+
 }

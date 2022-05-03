@@ -46,12 +46,47 @@ class CoordinatorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> PrepareAsyncsetplacementpolicy(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(PrepareAsyncsetplacementpolicyRaw(context, request, cq));
     }
+    virtual ::grpc::Status deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> AsyncdeleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(AsyncdeleteStripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> PrepareAsyncdeleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(PrepareAsyncdeleteStripeRaw(context, request, cq));
+    }
+    virtual ::grpc::Status uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> AsyncuploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(AsyncuploadCheckRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> PrepareAsyncuploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(PrepareAsyncuploadCheckRaw(context, request, cq));
+    }
+    virtual ::grpc::Status reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> Asyncreportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(AsyncreportblockuploadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>> PrepareAsyncreportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>>(PrepareAsyncreportblockuploadRaw(context, request, cq));
+    }
     virtual ::grpc::Status uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::StripeDetail* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>> AsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>>(AsyncuploadStripeRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>> PrepareAsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>>(PrepareAsyncuploadStripeRaw(context, request, cq));
+    }
+    virtual ::grpc::Status listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::StripeLocation* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeLocation>> AsynclistStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeLocation>>(AsynclistStripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeLocation>> PrepareAsynclistStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeLocation>>(PrepareAsynclistStripeRaw(context, request, cq));
+    }
+    virtual ::grpc::Status listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::coordinator::StripeDetails* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetails>> AsynclistAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetails>>(AsynclistAllStripesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetails>> PrepareAsynclistAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetails>>(PrepareAsynclistAllStripesRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
@@ -68,6 +103,42 @@ class CoordinatorService final {
       #else
       virtual void setplacementpolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      virtual void deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) = 0;
       virtual void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -80,6 +151,30 @@ class CoordinatorService final {
       #else
       virtual void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      virtual void listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -91,8 +186,18 @@ class CoordinatorService final {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* AsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* PrepareAsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* AsyncdeleteStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* PrepareAsyncdeleteStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* AsyncuploadCheckRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* PrepareAsyncuploadCheckRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* AsyncreportblockuploadRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::RequestResult>* PrepareAsyncreportblockuploadRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>* AsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetail>* PrepareAsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeLocation>* AsynclistStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeLocation>* PrepareAsynclistStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetails>* AsynclistAllStripesRaw(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::coordinator::StripeDetails>* PrepareAsynclistAllStripesRaw(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -104,12 +209,47 @@ class CoordinatorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> PrepareAsyncsetplacementpolicy(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(PrepareAsyncsetplacementpolicyRaw(context, request, cq));
     }
+    ::grpc::Status deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> AsyncdeleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(AsyncdeleteStripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> PrepareAsyncdeleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(PrepareAsyncdeleteStripeRaw(context, request, cq));
+    }
+    ::grpc::Status uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> AsyncuploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(AsyncuploadCheckRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> PrepareAsyncuploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(PrepareAsyncuploadCheckRaw(context, request, cq));
+    }
+    ::grpc::Status reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> Asyncreportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(AsyncreportblockuploadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>> PrepareAsyncreportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>>(PrepareAsyncreportblockuploadRaw(context, request, cq));
+    }
     ::grpc::Status uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::coordinator::StripeDetail* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>> AsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>>(AsyncuploadStripeRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>> PrepareAsyncuploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>>(PrepareAsyncuploadStripeRaw(context, request, cq));
+    }
+    ::grpc::Status listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::coordinator::StripeLocation* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>> AsynclistStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>>(AsynclistStripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>> PrepareAsynclistStripe(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>>(PrepareAsynclistStripeRaw(context, request, cq));
+    }
+    ::grpc::Status listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::coordinator::StripeDetails* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>> AsynclistAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>>(AsynclistAllStripesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>> PrepareAsynclistAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>>(PrepareAsynclistAllStripesRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -126,6 +266,42 @@ class CoordinatorService final {
       #else
       void setplacementpolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void deleteStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void deleteStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void uploadCheck(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void uploadCheck(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void reportblockupload(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void reportblockupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void uploadStripe(::grpc::ClientContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) override;
       void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -137,6 +313,30 @@ class CoordinatorService final {
       void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void uploadStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetail* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, std::function<void(::grpc::Status)>) override;
+      void listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void listStripe(::grpc::ClientContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void listStripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeLocation* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, std::function<void(::grpc::Status)>) override;
+      void listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void listAllStripes(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void listAllStripes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::coordinator::StripeDetails* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -151,10 +351,25 @@ class CoordinatorService final {
     class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* AsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* PrepareAsyncsetplacementpolicyRaw(::grpc::ClientContext* context, const ::coordinator::SetPlacementCommand& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* AsyncdeleteStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* PrepareAsyncdeleteStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* AsyncuploadCheckRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* PrepareAsyncuploadCheckRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* AsyncreportblockuploadRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::RequestResult>* PrepareAsyncreportblockuploadRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>* AsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetail>* PrepareAsyncuploadStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>* AsynclistStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::StripeLocation>* PrepareAsynclistStripeRaw(::grpc::ClientContext* context, const ::coordinator::StripeId& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>* AsynclistAllStripesRaw(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::coordinator::StripeDetails>* PrepareAsynclistAllStripesRaw(::grpc::ClientContext* context, const ::coordinator::ListAllStripeCMD& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_setplacementpolicy_;
+    const ::grpc::internal::RpcMethod rpcmethod_deleteStripe_;
+    const ::grpc::internal::RpcMethod rpcmethod_uploadCheck_;
+    const ::grpc::internal::RpcMethod rpcmethod_reportblockupload_;
     const ::grpc::internal::RpcMethod rpcmethod_uploadStripe_;
+    const ::grpc::internal::RpcMethod rpcmethod_listStripe_;
+    const ::grpc::internal::RpcMethod rpcmethod_listAllStripes_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -163,7 +378,12 @@ class CoordinatorService final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status setplacementpolicy(::grpc::ServerContext* context, const ::coordinator::SetPlacementCommand* request, ::coordinator::RequestResult* response);
+    virtual ::grpc::Status deleteStripe(::grpc::ServerContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response);
+    virtual ::grpc::Status uploadCheck(::grpc::ServerContext* context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response);
+    virtual ::grpc::Status reportblockupload(::grpc::ServerContext* context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response);
     virtual ::grpc::Status uploadStripe(::grpc::ServerContext* context, const ::coordinator::StripeInfo* request, ::coordinator::StripeDetail* response);
+    virtual ::grpc::Status listStripe(::grpc::ServerContext* context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response);
+    virtual ::grpc::Status listAllStripes(::grpc::ServerContext* context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_setplacementpolicy : public BaseClass {
@@ -186,12 +406,72 @@ class CoordinatorService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_deleteStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_deleteStripe() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_deleteStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status deleteStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestdeleteStripe(::grpc::ServerContext* context, ::coordinator::StripeId* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_uploadCheck : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_uploadCheck() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_uploadCheck() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadCheck(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestuploadCheck(::grpc::ServerContext* context, ::coordinator::StripeInfo* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_reportblockupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_reportblockupload() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_reportblockupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reportblockupload(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestreportblockupload(::grpc::ServerContext* context, ::coordinator::StripeId* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_uploadStripe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_uploadStripe() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_uploadStripe() override {
       BaseClassMustBeDerivedFromService(this);
@@ -202,10 +482,50 @@ class CoordinatorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestuploadStripe(::grpc::ServerContext* context, ::coordinator::StripeInfo* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::StripeDetail>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_setplacementpolicy<WithAsyncMethod_uploadStripe<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_listStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_listStripe() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_listStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestlistStripe(::grpc::ServerContext* context, ::coordinator::StripeId* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::StripeLocation>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_listAllStripes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_listAllStripes() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_listAllStripes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listAllStripes(::grpc::ServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestlistAllStripes(::grpc::ServerContext* context, ::coordinator::ListAllStripeCMD* request, ::grpc::ServerAsyncResponseWriter< ::coordinator::StripeDetails>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_setplacementpolicy<WithAsyncMethod_deleteStripe<WithAsyncMethod_uploadCheck<WithAsyncMethod_reportblockupload<WithAsyncMethod_uploadStripe<WithAsyncMethod_listStripe<WithAsyncMethod_listAllStripes<Service > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_setplacementpolicy : public BaseClass {
    private:
@@ -254,6 +574,147 @@ class CoordinatorService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithCallbackMethod_deleteStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_deleteStripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeId, ::coordinator::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response) { return this->deleteStripe(context, request, response); }));}
+    void SetMessageAllocatorFor_deleteStripe(
+        ::grpc::experimental::MessageAllocator< ::coordinator::StripeId, ::coordinator::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeId, ::coordinator::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_deleteStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status deleteStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* deleteStripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* deleteStripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_uploadCheck : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_uploadCheck() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeInfo, ::coordinator::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::coordinator::StripeInfo* request, ::coordinator::RequestResult* response) { return this->uploadCheck(context, request, response); }));}
+    void SetMessageAllocatorFor_uploadCheck(
+        ::grpc::experimental::MessageAllocator< ::coordinator::StripeInfo, ::coordinator::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeInfo, ::coordinator::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_uploadCheck() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadCheck(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* uploadCheck(
+      ::grpc::CallbackServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* uploadCheck(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_reportblockupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_reportblockupload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeId, ::coordinator::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::coordinator::StripeId* request, ::coordinator::RequestResult* response) { return this->reportblockupload(context, request, response); }));}
+    void SetMessageAllocatorFor_reportblockupload(
+        ::grpc::experimental::MessageAllocator< ::coordinator::StripeId, ::coordinator::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeId, ::coordinator::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_reportblockupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reportblockupload(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* reportblockupload(
+      ::grpc::CallbackServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* reportblockupload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithCallbackMethod_uploadStripe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -264,7 +725,7 @@ class CoordinatorService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(1,
+        MarkMethodCallback(4,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeInfo, ::coordinator::StripeDetail>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -276,9 +737,9 @@ class CoordinatorService final {
     void SetMessageAllocatorFor_uploadStripe(
         ::grpc::experimental::MessageAllocator< ::coordinator::StripeInfo, ::coordinator::StripeDetail>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeInfo, ::coordinator::StripeDetail>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -300,11 +761,105 @@ class CoordinatorService final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_listStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_listStripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeId, ::coordinator::StripeLocation>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::coordinator::StripeId* request, ::coordinator::StripeLocation* response) { return this->listStripe(context, request, response); }));}
+    void SetMessageAllocatorFor_listStripe(
+        ::grpc::experimental::MessageAllocator< ::coordinator::StripeId, ::coordinator::StripeLocation>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::StripeId, ::coordinator::StripeLocation>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_listStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* listStripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* listStripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_listAllStripes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_listAllStripes() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::ListAllStripeCMD, ::coordinator::StripeDetails>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::coordinator::ListAllStripeCMD* request, ::coordinator::StripeDetails* response) { return this->listAllStripes(context, request, response); }));}
+    void SetMessageAllocatorFor_listAllStripes(
+        ::grpc::experimental::MessageAllocator< ::coordinator::ListAllStripeCMD, ::coordinator::StripeDetails>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::coordinator::ListAllStripeCMD, ::coordinator::StripeDetails>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_listAllStripes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listAllStripes(::grpc::ServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* listAllStripes(
+      ::grpc::CallbackServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* listAllStripes(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_setplacementpolicy<ExperimentalWithCallbackMethod_uploadStripe<Service > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_setplacementpolicy<ExperimentalWithCallbackMethod_deleteStripe<ExperimentalWithCallbackMethod_uploadCheck<ExperimentalWithCallbackMethod_reportblockupload<ExperimentalWithCallbackMethod_uploadStripe<ExperimentalWithCallbackMethod_listStripe<ExperimentalWithCallbackMethod_listAllStripes<Service > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_setplacementpolicy<ExperimentalWithCallbackMethod_uploadStripe<Service > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_setplacementpolicy<ExperimentalWithCallbackMethod_deleteStripe<ExperimentalWithCallbackMethod_uploadCheck<ExperimentalWithCallbackMethod_reportblockupload<ExperimentalWithCallbackMethod_uploadStripe<ExperimentalWithCallbackMethod_listStripe<ExperimentalWithCallbackMethod_listAllStripes<Service > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_setplacementpolicy : public BaseClass {
    private:
@@ -323,18 +878,103 @@ class CoordinatorService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_deleteStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_deleteStripe() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_deleteStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status deleteStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_uploadCheck : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_uploadCheck() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_uploadCheck() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadCheck(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_reportblockupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_reportblockupload() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_reportblockupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reportblockupload(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_uploadStripe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_uploadStripe() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_uploadStripe() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status uploadStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::StripeDetail* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_listStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_listStripe() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_listStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_listAllStripes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_listAllStripes() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_listAllStripes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listAllStripes(::grpc::ServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -360,12 +1000,72 @@ class CoordinatorService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_deleteStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_deleteStripe() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_deleteStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status deleteStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestdeleteStripe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_uploadCheck : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_uploadCheck() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_uploadCheck() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadCheck(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestuploadCheck(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_reportblockupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_reportblockupload() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_reportblockupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reportblockupload(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestreportblockupload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_uploadStripe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_uploadStripe() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_uploadStripe() override {
       BaseClassMustBeDerivedFromService(this);
@@ -376,7 +1076,47 @@ class CoordinatorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestuploadStripe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_listStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_listStripe() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_listStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestlistStripe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_listAllStripes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_listAllStripes() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_listAllStripes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listAllStripes(::grpc::ServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestlistAllStripes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -418,6 +1158,120 @@ class CoordinatorService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_deleteStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_deleteStripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->deleteStripe(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_deleteStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status deleteStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* deleteStripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* deleteStripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_uploadCheck : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_uploadCheck() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->uploadCheck(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_uploadCheck() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status uploadCheck(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* uploadCheck(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* uploadCheck(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_reportblockupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_reportblockupload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->reportblockupload(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_reportblockupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reportblockupload(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* reportblockupload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* reportblockupload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_uploadStripe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -428,7 +1282,7 @@ class CoordinatorService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(1,
+        MarkMethodRawCallback(4,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -456,6 +1310,82 @@ class CoordinatorService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_listStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_listStripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->listStripe(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_listStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* listStripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* listStripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_listAllStripes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_listAllStripes() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->listAllStripes(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_listAllStripes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status listAllStripes(::grpc::ServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* listAllStripes(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* listAllStripes(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_setplacementpolicy : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -476,12 +1406,72 @@ class CoordinatorService final {
     virtual ::grpc::Status Streamedsetplacementpolicy(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::SetPlacementCommand,::coordinator::RequestResult>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_deleteStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_deleteStripe() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::coordinator::StripeId, ::coordinator::RequestResult>(std::bind(&WithStreamedUnaryMethod_deleteStripe<BaseClass>::StreameddeleteStripe, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_deleteStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status deleteStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreameddeleteStripe(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::StripeId,::coordinator::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_uploadCheck : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_uploadCheck() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler< ::coordinator::StripeInfo, ::coordinator::RequestResult>(std::bind(&WithStreamedUnaryMethod_uploadCheck<BaseClass>::StreameduploadCheck, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_uploadCheck() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status uploadCheck(::grpc::ServerContext* /*context*/, const ::coordinator::StripeInfo* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreameduploadCheck(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::StripeInfo,::coordinator::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_reportblockupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_reportblockupload() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler< ::coordinator::StripeId, ::coordinator::RequestResult>(std::bind(&WithStreamedUnaryMethod_reportblockupload<BaseClass>::Streamedreportblockupload, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_reportblockupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status reportblockupload(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streamedreportblockupload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::StripeId,::coordinator::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_uploadStripe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_uploadStripe() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler< ::coordinator::StripeInfo, ::coordinator::StripeDetail>(std::bind(&WithStreamedUnaryMethod_uploadStripe<BaseClass>::StreameduploadStripe, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_uploadStripe() override {
@@ -495,9 +1485,49 @@ class CoordinatorService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreameduploadStripe(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::StripeInfo,::coordinator::StripeDetail>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_setplacementpolicy<WithStreamedUnaryMethod_uploadStripe<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_listStripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_listStripe() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler< ::coordinator::StripeId, ::coordinator::StripeLocation>(std::bind(&WithStreamedUnaryMethod_listStripe<BaseClass>::StreamedlistStripe, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_listStripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status listStripe(::grpc::ServerContext* /*context*/, const ::coordinator::StripeId* /*request*/, ::coordinator::StripeLocation* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedlistStripe(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::StripeId,::coordinator::StripeLocation>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_listAllStripes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_listAllStripes() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler< ::coordinator::ListAllStripeCMD, ::coordinator::StripeDetails>(std::bind(&WithStreamedUnaryMethod_listAllStripes<BaseClass>::StreamedlistAllStripes, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_listAllStripes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status listAllStripes(::grpc::ServerContext* /*context*/, const ::coordinator::ListAllStripeCMD* /*request*/, ::coordinator::StripeDetails* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedlistAllStripes(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::coordinator::ListAllStripeCMD,::coordinator::StripeDetails>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_setplacementpolicy<WithStreamedUnaryMethod_deleteStripe<WithStreamedUnaryMethod_uploadCheck<WithStreamedUnaryMethod_reportblockupload<WithStreamedUnaryMethod_uploadStripe<WithStreamedUnaryMethod_listStripe<WithStreamedUnaryMethod_listAllStripes<Service > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_setplacementpolicy<WithStreamedUnaryMethod_uploadStripe<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_setplacementpolicy<WithStreamedUnaryMethod_deleteStripe<WithStreamedUnaryMethod_uploadCheck<WithStreamedUnaryMethod_reportblockupload<WithStreamedUnaryMethod_uploadStripe<WithStreamedUnaryMethod_listStripe<WithStreamedUnaryMethod_listAllStripes<Service > > > > > > > StreamedService;
 };
 
 class FromDataNode final {

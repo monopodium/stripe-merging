@@ -108,6 +108,41 @@ class FromCoodinator final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> PrepareAsyncclearallstripe(::grpc::ClientContext* context, const ::datanode::ClearallstripeCMD& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(PrepareAsyncclearallstripeRaw(context, request, cq));
     }
+    virtual ::grpc::Status handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::datanode::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> Asynchandleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(AsynchandleuploadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> PrepareAsynchandleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(PrepareAsynchandleuploadRaw(context, request, cq));
+    }
+    virtual ::grpc::Status handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::datanode::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> Asynchandledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(AsynchandledownloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> PrepareAsynchandledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(PrepareAsynchandledownloadRaw(context, request, cq));
+    }
+    virtual ::grpc::Status dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::datanode::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> Asyncdodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(AsyncdodownloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> PrepareAsyncdodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(PrepareAsyncdodownloadRaw(context, request, cq));
+    }
+    virtual ::grpc::Status dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::datanode::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> Asyncdopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(AsyncdopartialcodingRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> PrepareAsyncdopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(PrepareAsyncdopartialcodingRaw(context, request, cq));
+    }
+    virtual ::grpc::Status clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::datanode::RequestResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> Asyncclearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(AsyncclearstripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>> PrepareAsyncclearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>>(PrepareAsyncclearstripeRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -135,6 +170,66 @@ class FromCoodinator final {
       #else
       virtual void clearallstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      virtual void handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -148,6 +243,16 @@ class FromCoodinator final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsynccheckaliveRaw(::grpc::ClientContext* context, const ::datanode::CheckaliveCMD& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* AsyncclearallstripeRaw(::grpc::ClientContext* context, const ::datanode::ClearallstripeCMD& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsyncclearallstripeRaw(::grpc::ClientContext* context, const ::datanode::ClearallstripeCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* AsynchandleuploadRaw(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsynchandleuploadRaw(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* AsynchandledownloadRaw(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsynchandledownloadRaw(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* AsyncdodownloadRaw(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsyncdodownloadRaw(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* AsyncdopartialcodingRaw(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsyncdopartialcodingRaw(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* AsyncclearstripeRaw(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::datanode::RequestResult>* PrepareAsyncclearstripeRaw(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -165,6 +270,41 @@ class FromCoodinator final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> PrepareAsyncclearallstripe(::grpc::ClientContext* context, const ::datanode::ClearallstripeCMD& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(PrepareAsyncclearallstripeRaw(context, request, cq));
+    }
+    ::grpc::Status handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::datanode::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> Asynchandleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(AsynchandleuploadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> PrepareAsynchandleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(PrepareAsynchandleuploadRaw(context, request, cq));
+    }
+    ::grpc::Status handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::datanode::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> Asynchandledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(AsynchandledownloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> PrepareAsynchandledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(PrepareAsynchandledownloadRaw(context, request, cq));
+    }
+    ::grpc::Status dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::datanode::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> Asyncdodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(AsyncdodownloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> PrepareAsyncdodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(PrepareAsyncdodownloadRaw(context, request, cq));
+    }
+    ::grpc::Status dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::datanode::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> Asyncdopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(AsyncdopartialcodingRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> PrepareAsyncdopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(PrepareAsyncdopartialcodingRaw(context, request, cq));
+    }
+    ::grpc::Status clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::datanode::RequestResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> Asyncclearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(AsyncclearstripeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>> PrepareAsyncclearstripe(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>>(PrepareAsyncclearstripeRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -193,6 +333,66 @@ class FromCoodinator final {
       #else
       void clearallstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void handleupload(::grpc::ClientContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void handleupload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void handledownload(::grpc::ClientContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void handledownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void dodownload(::grpc::ClientContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void dodownload(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void dopartialcoding(::grpc::ClientContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void dopartialcoding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      void clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void clearstripe(::grpc::ClientContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void clearstripe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::datanode::RequestResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -208,8 +408,23 @@ class FromCoodinator final {
     ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsynccheckaliveRaw(::grpc::ClientContext* context, const ::datanode::CheckaliveCMD& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* AsyncclearallstripeRaw(::grpc::ClientContext* context, const ::datanode::ClearallstripeCMD& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsyncclearallstripeRaw(::grpc::ClientContext* context, const ::datanode::ClearallstripeCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* AsynchandleuploadRaw(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsynchandleuploadRaw(::grpc::ClientContext* context, const ::datanode::UploadCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* AsynchandledownloadRaw(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsynchandledownloadRaw(::grpc::ClientContext* context, const ::datanode::DownloadCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* AsyncdodownloadRaw(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsyncdodownloadRaw(::grpc::ClientContext* context, const ::datanode::DodownloadCMD& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* AsyncdopartialcodingRaw(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsyncdopartialcodingRaw(::grpc::ClientContext* context, const ::datanode::NodesLocation& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* AsyncclearstripeRaw(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::datanode::RequestResult>* PrepareAsyncclearstripeRaw(::grpc::ClientContext* context, const ::datanode::StripeId& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_checkalive_;
     const ::grpc::internal::RpcMethod rpcmethod_clearallstripe_;
+    const ::grpc::internal::RpcMethod rpcmethod_handleupload_;
+    const ::grpc::internal::RpcMethod rpcmethod_handledownload_;
+    const ::grpc::internal::RpcMethod rpcmethod_dodownload_;
+    const ::grpc::internal::RpcMethod rpcmethod_dopartialcoding_;
+    const ::grpc::internal::RpcMethod rpcmethod_clearstripe_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -219,6 +434,11 @@ class FromCoodinator final {
     virtual ~Service();
     virtual ::grpc::Status checkalive(::grpc::ServerContext* context, const ::datanode::CheckaliveCMD* request, ::datanode::RequestResult* response);
     virtual ::grpc::Status clearallstripe(::grpc::ServerContext* context, const ::datanode::ClearallstripeCMD* request, ::datanode::RequestResult* response);
+    virtual ::grpc::Status handleupload(::grpc::ServerContext* context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response);
+    virtual ::grpc::Status handledownload(::grpc::ServerContext* context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response);
+    virtual ::grpc::Status dodownload(::grpc::ServerContext* context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response);
+    virtual ::grpc::Status dopartialcoding(::grpc::ServerContext* context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response);
+    virtual ::grpc::Status clearstripe(::grpc::ServerContext* context, const ::datanode::StripeId* request, ::datanode::RequestResult* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_checkalive : public BaseClass {
@@ -260,7 +480,107 @@ class FromCoodinator final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_checkalive<WithAsyncMethod_clearallstripe<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_handleupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_handleupload() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_handleupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handleupload(::grpc::ServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requesthandleupload(::grpc::ServerContext* context, ::datanode::UploadCMD* request, ::grpc::ServerAsyncResponseWriter< ::datanode::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_handledownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_handledownload() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_handledownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handledownload(::grpc::ServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requesthandledownload(::grpc::ServerContext* context, ::datanode::DownloadCMD* request, ::grpc::ServerAsyncResponseWriter< ::datanode::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_dodownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_dodownload() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_dodownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dodownload(::grpc::ServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestdodownload(::grpc::ServerContext* context, ::datanode::DodownloadCMD* request, ::grpc::ServerAsyncResponseWriter< ::datanode::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_dopartialcoding : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_dopartialcoding() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_dopartialcoding() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dopartialcoding(::grpc::ServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestdopartialcoding(::grpc::ServerContext* context, ::datanode::NodesLocation* request, ::grpc::ServerAsyncResponseWriter< ::datanode::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_clearstripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_clearstripe() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_clearstripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status clearstripe(::grpc::ServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestclearstripe(::grpc::ServerContext* context, ::datanode::StripeId* request, ::grpc::ServerAsyncResponseWriter< ::datanode::RequestResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_checkalive<WithAsyncMethod_clearallstripe<WithAsyncMethod_handleupload<WithAsyncMethod_handledownload<WithAsyncMethod_dodownload<WithAsyncMethod_dopartialcoding<WithAsyncMethod_clearstripe<Service > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_checkalive : public BaseClass {
    private:
@@ -355,11 +675,246 @@ class FromCoodinator final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_handleupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_handleupload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::datanode::UploadCMD, ::datanode::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::datanode::UploadCMD* request, ::datanode::RequestResult* response) { return this->handleupload(context, request, response); }));}
+    void SetMessageAllocatorFor_handleupload(
+        ::grpc::experimental::MessageAllocator< ::datanode::UploadCMD, ::datanode::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::datanode::UploadCMD, ::datanode::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_handleupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handleupload(::grpc::ServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* handleupload(
+      ::grpc::CallbackServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* handleupload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_handledownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_handledownload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::datanode::DownloadCMD, ::datanode::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::datanode::DownloadCMD* request, ::datanode::RequestResult* response) { return this->handledownload(context, request, response); }));}
+    void SetMessageAllocatorFor_handledownload(
+        ::grpc::experimental::MessageAllocator< ::datanode::DownloadCMD, ::datanode::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::datanode::DownloadCMD, ::datanode::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_handledownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handledownload(::grpc::ServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* handledownload(
+      ::grpc::CallbackServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* handledownload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_dodownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_dodownload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::datanode::DodownloadCMD, ::datanode::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::datanode::DodownloadCMD* request, ::datanode::RequestResult* response) { return this->dodownload(context, request, response); }));}
+    void SetMessageAllocatorFor_dodownload(
+        ::grpc::experimental::MessageAllocator< ::datanode::DodownloadCMD, ::datanode::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::datanode::DodownloadCMD, ::datanode::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_dodownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dodownload(::grpc::ServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* dodownload(
+      ::grpc::CallbackServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* dodownload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_dopartialcoding : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_dopartialcoding() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::datanode::NodesLocation, ::datanode::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::datanode::NodesLocation* request, ::datanode::RequestResult* response) { return this->dopartialcoding(context, request, response); }));}
+    void SetMessageAllocatorFor_dopartialcoding(
+        ::grpc::experimental::MessageAllocator< ::datanode::NodesLocation, ::datanode::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::datanode::NodesLocation, ::datanode::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_dopartialcoding() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dopartialcoding(::grpc::ServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* dopartialcoding(
+      ::grpc::CallbackServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* dopartialcoding(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_clearstripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_clearstripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::datanode::StripeId, ::datanode::RequestResult>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::datanode::StripeId* request, ::datanode::RequestResult* response) { return this->clearstripe(context, request, response); }));}
+    void SetMessageAllocatorFor_clearstripe(
+        ::grpc::experimental::MessageAllocator< ::datanode::StripeId, ::datanode::RequestResult>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::datanode::StripeId, ::datanode::RequestResult>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_clearstripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status clearstripe(::grpc::ServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* clearstripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* clearstripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_checkalive<ExperimentalWithCallbackMethod_clearallstripe<Service > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_checkalive<ExperimentalWithCallbackMethod_clearallstripe<ExperimentalWithCallbackMethod_handleupload<ExperimentalWithCallbackMethod_handledownload<ExperimentalWithCallbackMethod_dodownload<ExperimentalWithCallbackMethod_dopartialcoding<ExperimentalWithCallbackMethod_clearstripe<Service > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_checkalive<ExperimentalWithCallbackMethod_clearallstripe<Service > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_checkalive<ExperimentalWithCallbackMethod_clearallstripe<ExperimentalWithCallbackMethod_handleupload<ExperimentalWithCallbackMethod_handledownload<ExperimentalWithCallbackMethod_dodownload<ExperimentalWithCallbackMethod_dopartialcoding<ExperimentalWithCallbackMethod_clearstripe<Service > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_checkalive : public BaseClass {
    private:
@@ -390,6 +945,91 @@ class FromCoodinator final {
     }
     // disable synchronous version of this method
     ::grpc::Status clearallstripe(::grpc::ServerContext* /*context*/, const ::datanode::ClearallstripeCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_handleupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_handleupload() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_handleupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handleupload(::grpc::ServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_handledownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_handledownload() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_handledownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handledownload(::grpc::ServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_dodownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_dodownload() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_dodownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dodownload(::grpc::ServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_dopartialcoding : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_dopartialcoding() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_dopartialcoding() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dopartialcoding(::grpc::ServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_clearstripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_clearstripe() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_clearstripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status clearstripe(::grpc::ServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -432,6 +1072,106 @@ class FromCoodinator final {
     }
     void Requestclearallstripe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_handleupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_handleupload() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_handleupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handleupload(::grpc::ServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requesthandleupload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_handledownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_handledownload() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_handledownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handledownload(::grpc::ServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requesthandledownload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_dodownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_dodownload() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_dodownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dodownload(::grpc::ServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestdodownload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_dopartialcoding : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_dopartialcoding() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_dopartialcoding() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dopartialcoding(::grpc::ServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestdopartialcoding(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_clearstripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_clearstripe() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_clearstripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status clearstripe(::grpc::ServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestclearstripe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -511,6 +1251,196 @@ class FromCoodinator final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_handleupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_handleupload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->handleupload(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_handleupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handleupload(::grpc::ServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* handleupload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* handleupload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_handledownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_handledownload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->handledownload(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_handledownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status handledownload(::grpc::ServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* handledownload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* handledownload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_dodownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_dodownload() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->dodownload(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_dodownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dodownload(::grpc::ServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* dodownload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* dodownload(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_dopartialcoding : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_dopartialcoding() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->dopartialcoding(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_dopartialcoding() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status dopartialcoding(::grpc::ServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* dopartialcoding(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* dopartialcoding(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_clearstripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_clearstripe() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->clearstripe(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_clearstripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status clearstripe(::grpc::ServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* clearstripe(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* clearstripe(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_checkalive : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -550,9 +1480,109 @@ class FromCoodinator final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status Streamedclearallstripe(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::datanode::ClearallstripeCMD,::datanode::RequestResult>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_checkalive<WithStreamedUnaryMethod_clearallstripe<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_handleupload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_handleupload() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler< ::datanode::UploadCMD, ::datanode::RequestResult>(std::bind(&WithStreamedUnaryMethod_handleupload<BaseClass>::Streamedhandleupload, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_handleupload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status handleupload(::grpc::ServerContext* /*context*/, const ::datanode::UploadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streamedhandleupload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::datanode::UploadCMD,::datanode::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_handledownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_handledownload() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler< ::datanode::DownloadCMD, ::datanode::RequestResult>(std::bind(&WithStreamedUnaryMethod_handledownload<BaseClass>::Streamedhandledownload, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_handledownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status handledownload(::grpc::ServerContext* /*context*/, const ::datanode::DownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streamedhandledownload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::datanode::DownloadCMD,::datanode::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_dodownload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_dodownload() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler< ::datanode::DodownloadCMD, ::datanode::RequestResult>(std::bind(&WithStreamedUnaryMethod_dodownload<BaseClass>::Streameddodownload, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_dodownload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status dodownload(::grpc::ServerContext* /*context*/, const ::datanode::DodownloadCMD* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streameddodownload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::datanode::DodownloadCMD,::datanode::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_dopartialcoding : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_dopartialcoding() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler< ::datanode::NodesLocation, ::datanode::RequestResult>(std::bind(&WithStreamedUnaryMethod_dopartialcoding<BaseClass>::Streameddopartialcoding, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_dopartialcoding() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status dopartialcoding(::grpc::ServerContext* /*context*/, const ::datanode::NodesLocation* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streameddopartialcoding(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::datanode::NodesLocation,::datanode::RequestResult>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_clearstripe : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_clearstripe() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler< ::datanode::StripeId, ::datanode::RequestResult>(std::bind(&WithStreamedUnaryMethod_clearstripe<BaseClass>::Streamedclearstripe, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_clearstripe() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status clearstripe(::grpc::ServerContext* /*context*/, const ::datanode::StripeId* /*request*/, ::datanode::RequestResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streamedclearstripe(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::datanode::StripeId,::datanode::RequestResult>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_checkalive<WithStreamedUnaryMethod_clearallstripe<WithStreamedUnaryMethod_handleupload<WithStreamedUnaryMethod_handledownload<WithStreamedUnaryMethod_dodownload<WithStreamedUnaryMethod_dopartialcoding<WithStreamedUnaryMethod_clearstripe<Service > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_checkalive<WithStreamedUnaryMethod_clearallstripe<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_checkalive<WithStreamedUnaryMethod_clearallstripe<WithStreamedUnaryMethod_handleupload<WithStreamedUnaryMethod_handledownload<WithStreamedUnaryMethod_dodownload<WithStreamedUnaryMethod_dopartialcoding<WithStreamedUnaryMethod_clearstripe<Service > > > > > > > StreamedService;
 };
 
 }  // namespace datanode

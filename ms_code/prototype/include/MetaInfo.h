@@ -35,6 +35,37 @@ namespace Product{
         int c;
         int blksize; // count Bytes
     };
+    typedef std::unordered_map<int,std::tuple<int,std::string>> one_column_loc;
+    enum ErasureCodingPolicy{
+        LRC = 0 // default
+    };
+    struct StripeInfo{
+        /*
+         * describe a stripe[same as a file in this project] , consists of stripe width , local parity
+         * and global parity blocks , currently our own LRC ECSchema
+        */
+
+        //location : an uri vector
+        //ie : [{datablk :}ip:port1,ip:port2,...|{local_parity_blk :}ip:port k+1,...|{global_parityblk : }... ]
+        //std::vector<std::string> blklocation;
+
+        //ie : [cluster1 , cluster1 ,cluster2,] means blklocation[i] coming from clusterdistribution[i]
+        std::vector<int> clusterdistribution;
+        int stripe_id = 0;
+        std::unordered_map<int,one_column_loc> colums_locations;
+        one_column_loc G_location;
+        
+        std::string dir;
+        int stripeid;
+        ECSchema ecschema;
+        ErasureCodingPolicy ecpolicy;
+
+
+        bool operator<(const StripeInfo &rhs) const {
+            return stripeid < rhs.stripeid;
+        }
+
+    };
     
 }
 

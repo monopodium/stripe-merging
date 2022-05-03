@@ -5,12 +5,15 @@
 
 int main(int argc, char ** argv)
 {
-    int blksz = std::stoi(argv[1]);
+    
 
-    std::string server_address(argv[2], argv[2] + strlen(argv[2]));
+    int datanodeupload_port = std::stoi(argv[1]);
+    int datanodedownload_port = std::stoi(argv[2]);
+    int blksz = std::stoi(argv[3]);
+    std::string server_address(argv[4], argv[4] + strlen(argv[4]));
     std::cout << server_address << std::endl;
     //std::string server_address = "0.0.0.0:10001";
-    productcode::FileSystemDataNode fileSystemDataNode(blksz, server_address);
+    productcode::FileSystemDataNode fileSystemDataNode(blksz,datanodeupload_port,datanodedownload_port, server_address);
     fileSystemDataNode.Run();
     return 0;
 }

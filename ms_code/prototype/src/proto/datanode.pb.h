@@ -47,7 +47,7 @@ struct TableStruct_datanode_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -61,18 +61,247 @@ extern CheckaliveCMDDefaultTypeInternal _CheckaliveCMD_default_instance_;
 class ClearallstripeCMD;
 class ClearallstripeCMDDefaultTypeInternal;
 extern ClearallstripeCMDDefaultTypeInternal _ClearallstripeCMD_default_instance_;
+class DodownloadCMD;
+class DodownloadCMDDefaultTypeInternal;
+extern DodownloadCMDDefaultTypeInternal _DodownloadCMD_default_instance_;
+class DownloadCMD;
+class DownloadCMDDefaultTypeInternal;
+extern DownloadCMDDefaultTypeInternal _DownloadCMD_default_instance_;
+class ListAllStripeCMD;
+class ListAllStripeCMDDefaultTypeInternal;
+extern ListAllStripeCMDDefaultTypeInternal _ListAllStripeCMD_default_instance_;
+class NodesLocation;
+class NodesLocationDefaultTypeInternal;
+extern NodesLocationDefaultTypeInternal _NodesLocation_default_instance_;
 class RequestResult;
 class RequestResultDefaultTypeInternal;
 extern RequestResultDefaultTypeInternal _RequestResult_default_instance_;
+class StripeId;
+class StripeIdDefaultTypeInternal;
+extern StripeIdDefaultTypeInternal _StripeId_default_instance_;
+class StripeLocation;
+class StripeLocationDefaultTypeInternal;
+extern StripeLocationDefaultTypeInternal _StripeLocation_default_instance_;
+class UploadCMD;
+class UploadCMDDefaultTypeInternal;
+extern UploadCMDDefaultTypeInternal _UploadCMD_default_instance_;
 }  // namespace datanode
 PROTOBUF_NAMESPACE_OPEN
 template<> ::datanode::CheckaliveCMD* Arena::CreateMaybeMessage<::datanode::CheckaliveCMD>(Arena*);
 template<> ::datanode::ClearallstripeCMD* Arena::CreateMaybeMessage<::datanode::ClearallstripeCMD>(Arena*);
+template<> ::datanode::DodownloadCMD* Arena::CreateMaybeMessage<::datanode::DodownloadCMD>(Arena*);
+template<> ::datanode::DownloadCMD* Arena::CreateMaybeMessage<::datanode::DownloadCMD>(Arena*);
+template<> ::datanode::ListAllStripeCMD* Arena::CreateMaybeMessage<::datanode::ListAllStripeCMD>(Arena*);
+template<> ::datanode::NodesLocation* Arena::CreateMaybeMessage<::datanode::NodesLocation>(Arena*);
 template<> ::datanode::RequestResult* Arena::CreateMaybeMessage<::datanode::RequestResult>(Arena*);
+template<> ::datanode::StripeId* Arena::CreateMaybeMessage<::datanode::StripeId>(Arena*);
+template<> ::datanode::StripeLocation* Arena::CreateMaybeMessage<::datanode::StripeLocation>(Arena*);
+template<> ::datanode::UploadCMD* Arena::CreateMaybeMessage<::datanode::UploadCMD>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace datanode {
 
 // ===================================================================
+
+class DodownloadCMD :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.DodownloadCMD) */ {
+ public:
+  DodownloadCMD();
+  virtual ~DodownloadCMD();
+
+  DodownloadCMD(const DodownloadCMD& from);
+  DodownloadCMD(DodownloadCMD&& from) noexcept
+    : DodownloadCMD() {
+    *this = ::std::move(from);
+  }
+
+  inline DodownloadCMD& operator=(const DodownloadCMD& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DodownloadCMD& operator=(DodownloadCMD&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DodownloadCMD& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DodownloadCMD* internal_default_instance() {
+    return reinterpret_cast<const DodownloadCMD*>(
+               &_DodownloadCMD_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(DodownloadCMD& a, DodownloadCMD& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DodownloadCMD* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DodownloadCMD* New() const final {
+    return CreateMaybeMessage<DodownloadCMD>(nullptr);
+  }
+
+  DodownloadCMD* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DodownloadCMD>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DodownloadCMD& from);
+  void MergeFrom(const DodownloadCMD& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DodownloadCMD* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.DodownloadCMD";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNodesUriFieldNumber = 1,
+    kNodesStripeIdFieldNumber = 2,
+    kNodesBlkIdFieldNumber = 3,
+    kTargetStripeIdFieldNumber = 4,
+    kTargetBlksFieldNumber = 5,
+    kIsPartFieldNumber = 6,
+    kAsPartFieldNumber = 7,
+  };
+  // string NodesUri = 1;
+  void clear_nodesuri();
+  const std::string& nodesuri() const;
+  void set_nodesuri(const std::string& value);
+  void set_nodesuri(std::string&& value);
+  void set_nodesuri(const char* value);
+  void set_nodesuri(const char* value, size_t size);
+  std::string* mutable_nodesuri();
+  std::string* release_nodesuri();
+  void set_allocated_nodesuri(std::string* nodesuri);
+  private:
+  const std::string& _internal_nodesuri() const;
+  void _internal_set_nodesuri(const std::string& value);
+  std::string* _internal_mutable_nodesuri();
+  public:
+
+  // int32 NodesStripeId = 2;
+  void clear_nodesstripeid();
+  ::PROTOBUF_NAMESPACE_ID::int32 nodesstripeid() const;
+  void set_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nodesstripeid() const;
+  void _internal_set_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 NodesBlkId = 3;
+  void clear_nodesblkid();
+  ::PROTOBUF_NAMESPACE_ID::int32 nodesblkid() const;
+  void set_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nodesblkid() const;
+  void _internal_set_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 TargetStripeId = 4;
+  void clear_targetstripeid();
+  ::PROTOBUF_NAMESPACE_ID::int32 targetstripeid() const;
+  void set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_targetstripeid() const;
+  void _internal_set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 TargetBlks = 5;
+  void clear_targetblks();
+  ::PROTOBUF_NAMESPACE_ID::int32 targetblks() const;
+  void set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_targetblks() const;
+  void _internal_set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // bool IsPart = 6;
+  void clear_ispart();
+  bool ispart() const;
+  void set_ispart(bool value);
+  private:
+  bool _internal_ispart() const;
+  void _internal_set_ispart(bool value);
+  public:
+
+  // bool AsPart = 7;
+  void clear_aspart();
+  bool aspart() const;
+  void set_aspart(bool value);
+  private:
+  bool _internal_aspart() const;
+  void _internal_set_aspart(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:datanode.DodownloadCMD)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nodesuri_;
+  ::PROTOBUF_NAMESPACE_ID::int32 nodesstripeid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 nodesblkid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 targetstripeid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 targetblks_;
+  bool ispart_;
+  bool aspart_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
+// -------------------------------------------------------------------
 
 class CheckaliveCMD :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.CheckaliveCMD) */ {
@@ -116,7 +345,7 @@ class CheckaliveCMD :
                &_CheckaliveCMD_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(CheckaliveCMD& a, CheckaliveCMD& b) {
     a.Swap(&b);
@@ -231,7 +460,7 @@ class ClearallstripeCMD :
                &_ClearallstripeCMD_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(ClearallstripeCMD& a, ClearallstripeCMD& b) {
     a.Swap(&b);
@@ -346,7 +575,7 @@ class RequestResult :
                &_RequestResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(RequestResult& a, RequestResult& b) {
     a.Swap(&b);
@@ -430,6 +659,973 @@ class RequestResult :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_datanode_2eproto;
 };
+// -------------------------------------------------------------------
+
+class StripeId :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.StripeId) */ {
+ public:
+  StripeId();
+  virtual ~StripeId();
+
+  StripeId(const StripeId& from);
+  StripeId(StripeId&& from) noexcept
+    : StripeId() {
+    *this = ::std::move(from);
+  }
+
+  inline StripeId& operator=(const StripeId& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StripeId& operator=(StripeId&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const StripeId& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const StripeId* internal_default_instance() {
+    return reinterpret_cast<const StripeId*>(
+               &_StripeId_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(StripeId& a, StripeId& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StripeId* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline StripeId* New() const final {
+    return CreateMaybeMessage<StripeId>(nullptr);
+  }
+
+  StripeId* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<StripeId>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const StripeId& from);
+  void MergeFrom(const StripeId& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StripeId* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.StripeId";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStripeidFieldNumber = 1,
+  };
+  // int32 stripeid = 1;
+  void clear_stripeid();
+  ::PROTOBUF_NAMESPACE_ID::int32 stripeid() const;
+  void set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_stripeid() const;
+  void _internal_set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:datanode.StripeId)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::int32 stripeid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StripeLocation :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.StripeLocation) */ {
+ public:
+  StripeLocation();
+  virtual ~StripeLocation();
+
+  StripeLocation(const StripeLocation& from);
+  StripeLocation(StripeLocation&& from) noexcept
+    : StripeLocation() {
+    *this = ::std::move(from);
+  }
+
+  inline StripeLocation& operator=(const StripeLocation& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StripeLocation& operator=(StripeLocation&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const StripeLocation& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const StripeLocation* internal_default_instance() {
+    return reinterpret_cast<const StripeLocation*>(
+               &_StripeLocation_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(StripeLocation& a, StripeLocation& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StripeLocation* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline StripeLocation* New() const final {
+    return CreateMaybeMessage<StripeLocation>(nullptr);
+  }
+
+  StripeLocation* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<StripeLocation>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const StripeLocation& from);
+  void MergeFrom(const StripeLocation& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StripeLocation* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.StripeLocation";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataLocFieldNumber = 1,
+    kLocalparityLocFieldNumber = 2,
+    kGlobalparityLocFieldNumber = 3,
+  };
+  // repeated string dataLoc = 1;
+  int dataloc_size() const;
+  private:
+  int _internal_dataloc_size() const;
+  public:
+  void clear_dataloc();
+  const std::string& dataloc(int index) const;
+  std::string* mutable_dataloc(int index);
+  void set_dataloc(int index, const std::string& value);
+  void set_dataloc(int index, std::string&& value);
+  void set_dataloc(int index, const char* value);
+  void set_dataloc(int index, const char* value, size_t size);
+  std::string* add_dataloc();
+  void add_dataloc(const std::string& value);
+  void add_dataloc(std::string&& value);
+  void add_dataloc(const char* value);
+  void add_dataloc(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& dataloc() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_dataloc();
+  private:
+  const std::string& _internal_dataloc(int index) const;
+  std::string* _internal_add_dataloc();
+  public:
+
+  // repeated string localparityLoc = 2;
+  int localparityloc_size() const;
+  private:
+  int _internal_localparityloc_size() const;
+  public:
+  void clear_localparityloc();
+  const std::string& localparityloc(int index) const;
+  std::string* mutable_localparityloc(int index);
+  void set_localparityloc(int index, const std::string& value);
+  void set_localparityloc(int index, std::string&& value);
+  void set_localparityloc(int index, const char* value);
+  void set_localparityloc(int index, const char* value, size_t size);
+  std::string* add_localparityloc();
+  void add_localparityloc(const std::string& value);
+  void add_localparityloc(std::string&& value);
+  void add_localparityloc(const char* value);
+  void add_localparityloc(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& localparityloc() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_localparityloc();
+  private:
+  const std::string& _internal_localparityloc(int index) const;
+  std::string* _internal_add_localparityloc();
+  public:
+
+  // repeated string globalparityLoc = 3;
+  int globalparityloc_size() const;
+  private:
+  int _internal_globalparityloc_size() const;
+  public:
+  void clear_globalparityloc();
+  const std::string& globalparityloc(int index) const;
+  std::string* mutable_globalparityloc(int index);
+  void set_globalparityloc(int index, const std::string& value);
+  void set_globalparityloc(int index, std::string&& value);
+  void set_globalparityloc(int index, const char* value);
+  void set_globalparityloc(int index, const char* value, size_t size);
+  std::string* add_globalparityloc();
+  void add_globalparityloc(const std::string& value);
+  void add_globalparityloc(std::string&& value);
+  void add_globalparityloc(const char* value);
+  void add_globalparityloc(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& globalparityloc() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_globalparityloc();
+  private:
+  const std::string& _internal_globalparityloc(int index) const;
+  std::string* _internal_add_globalparityloc();
+  public:
+
+  // @@protoc_insertion_point(class_scope:datanode.StripeLocation)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> dataloc_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> localparityloc_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> globalparityloc_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
+// -------------------------------------------------------------------
+
+class NodesLocation :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.NodesLocation) */ {
+ public:
+  NodesLocation();
+  virtual ~NodesLocation();
+
+  NodesLocation(const NodesLocation& from);
+  NodesLocation(NodesLocation&& from) noexcept
+    : NodesLocation() {
+    *this = ::std::move(from);
+  }
+
+  inline NodesLocation& operator=(const NodesLocation& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NodesLocation& operator=(NodesLocation&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const NodesLocation& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const NodesLocation* internal_default_instance() {
+    return reinterpret_cast<const NodesLocation*>(
+               &_NodesLocation_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(NodesLocation& a, NodesLocation& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NodesLocation* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline NodesLocation* New() const final {
+    return CreateMaybeMessage<NodesLocation>(nullptr);
+  }
+
+  NodesLocation* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<NodesLocation>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const NodesLocation& from);
+  void MergeFrom(const NodesLocation& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NodesLocation* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.NodesLocation";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNodesUriFieldNumber = 1,
+    kNodesStripeIdFieldNumber = 2,
+    kNodesBlkIdFieldNumber = 3,
+    kIsPartFieldNumber = 4,
+    kTargetStripeIdFieldNumber = 5,
+    kTargetBlksFieldNumber = 6,
+    kAsPartFieldNumber = 7,
+  };
+  // repeated string NodesUri = 1;
+  int nodesuri_size() const;
+  private:
+  int _internal_nodesuri_size() const;
+  public:
+  void clear_nodesuri();
+  const std::string& nodesuri(int index) const;
+  std::string* mutable_nodesuri(int index);
+  void set_nodesuri(int index, const std::string& value);
+  void set_nodesuri(int index, std::string&& value);
+  void set_nodesuri(int index, const char* value);
+  void set_nodesuri(int index, const char* value, size_t size);
+  std::string* add_nodesuri();
+  void add_nodesuri(const std::string& value);
+  void add_nodesuri(std::string&& value);
+  void add_nodesuri(const char* value);
+  void add_nodesuri(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& nodesuri() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_nodesuri();
+  private:
+  const std::string& _internal_nodesuri(int index) const;
+  std::string* _internal_add_nodesuri();
+  public:
+
+  // repeated int32 NodesStripeId = 2;
+  int nodesstripeid_size() const;
+  private:
+  int _internal_nodesstripeid_size() const;
+  public:
+  void clear_nodesstripeid();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nodesstripeid(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_nodesstripeid() const;
+  void _internal_add_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_nodesstripeid();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 nodesstripeid(int index) const;
+  void set_nodesstripeid(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      nodesstripeid() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_nodesstripeid();
+
+  // repeated int32 NodesBlkId = 3;
+  int nodesblkid_size() const;
+  private:
+  int _internal_nodesblkid_size() const;
+  public:
+  void clear_nodesblkid();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nodesblkid(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_nodesblkid() const;
+  void _internal_add_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_nodesblkid();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 nodesblkid(int index) const;
+  void set_nodesblkid(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      nodesblkid() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_nodesblkid();
+
+  // repeated bool IsPart = 4;
+  int ispart_size() const;
+  private:
+  int _internal_ispart_size() const;
+  public:
+  void clear_ispart();
+  private:
+  bool _internal_ispart(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+      _internal_ispart() const;
+  void _internal_add_ispart(bool value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+      _internal_mutable_ispart();
+  public:
+  bool ispart(int index) const;
+  void set_ispart(int index, bool value);
+  void add_ispart(bool value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+      ispart() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+      mutable_ispart();
+
+  // int32 TargetStripeId = 5;
+  void clear_targetstripeid();
+  ::PROTOBUF_NAMESPACE_ID::int32 targetstripeid() const;
+  void set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_targetstripeid() const;
+  void _internal_set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 TargetBlks = 6;
+  void clear_targetblks();
+  ::PROTOBUF_NAMESPACE_ID::int32 targetblks() const;
+  void set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_targetblks() const;
+  void _internal_set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // bool AsPart = 7;
+  void clear_aspart();
+  bool aspart() const;
+  void set_aspart(bool value);
+  private:
+  bool _internal_aspart() const;
+  void _internal_set_aspart(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:datanode.NodesLocation)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> nodesuri_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > nodesstripeid_;
+  mutable std::atomic<int> _nodesstripeid_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > nodesblkid_;
+  mutable std::atomic<int> _nodesblkid_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool > ispart_;
+  mutable std::atomic<int> _ispart_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::int32 targetstripeid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 targetblks_;
+  bool aspart_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadCMD :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.UploadCMD) */ {
+ public:
+  UploadCMD();
+  virtual ~UploadCMD();
+
+  UploadCMD(const UploadCMD& from);
+  UploadCMD(UploadCMD&& from) noexcept
+    : UploadCMD() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadCMD& operator=(const UploadCMD& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadCMD& operator=(UploadCMD&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const UploadCMD& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const UploadCMD* internal_default_instance() {
+    return reinterpret_cast<const UploadCMD*>(
+               &_UploadCMD_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(UploadCMD& a, UploadCMD& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadCMD* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UploadCMD* New() const final {
+    return CreateMaybeMessage<UploadCMD>(nullptr);
+  }
+
+  UploadCMD* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UploadCMD>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UploadCMD& from);
+  void MergeFrom(const UploadCMD& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadCMD* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.UploadCMD";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAsPartFieldNumber = 1,
+    kStripeidFieldNumber = 2,
+    kBlksizeKbFieldNumber = 3,
+  };
+  // bool AsPart = 1;
+  void clear_aspart();
+  bool aspart() const;
+  void set_aspart(bool value);
+  private:
+  bool _internal_aspart() const;
+  void _internal_set_aspart(bool value);
+  public:
+
+  // int32 stripeid = 2;
+  void clear_stripeid();
+  ::PROTOBUF_NAMESPACE_ID::int32 stripeid() const;
+  void set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_stripeid() const;
+  void _internal_set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 blksize_kb = 3;
+  void clear_blksize_kb();
+  ::PROTOBUF_NAMESPACE_ID::int32 blksize_kb() const;
+  void set_blksize_kb(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_blksize_kb() const;
+  void _internal_set_blksize_kb(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:datanode.UploadCMD)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  bool aspart_;
+  ::PROTOBUF_NAMESPACE_ID::int32 stripeid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 blksize_kb_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DownloadCMD :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.DownloadCMD) */ {
+ public:
+  DownloadCMD();
+  virtual ~DownloadCMD();
+
+  DownloadCMD(const DownloadCMD& from);
+  DownloadCMD(DownloadCMD&& from) noexcept
+    : DownloadCMD() {
+    *this = ::std::move(from);
+  }
+
+  inline DownloadCMD& operator=(const DownloadCMD& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DownloadCMD& operator=(DownloadCMD&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DownloadCMD& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DownloadCMD* internal_default_instance() {
+    return reinterpret_cast<const DownloadCMD*>(
+               &_DownloadCMD_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(DownloadCMD& a, DownloadCMD& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DownloadCMD* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DownloadCMD* New() const final {
+    return CreateMaybeMessage<DownloadCMD>(nullptr);
+  }
+
+  DownloadCMD* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DownloadCMD>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DownloadCMD& from);
+  void MergeFrom(const DownloadCMD& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DownloadCMD* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.DownloadCMD";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAsPartFieldNumber = 1,
+  };
+  // bool AsPart = 1;
+  void clear_aspart();
+  bool aspart() const;
+  void set_aspart(bool value);
+  private:
+  bool _internal_aspart() const;
+  void _internal_set_aspart(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:datanode.DownloadCMD)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  bool aspart_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListAllStripeCMD :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:datanode.ListAllStripeCMD) */ {
+ public:
+  ListAllStripeCMD();
+  virtual ~ListAllStripeCMD();
+
+  ListAllStripeCMD(const ListAllStripeCMD& from);
+  ListAllStripeCMD(ListAllStripeCMD&& from) noexcept
+    : ListAllStripeCMD() {
+    *this = ::std::move(from);
+  }
+
+  inline ListAllStripeCMD& operator=(const ListAllStripeCMD& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListAllStripeCMD& operator=(ListAllStripeCMD&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ListAllStripeCMD& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListAllStripeCMD* internal_default_instance() {
+    return reinterpret_cast<const ListAllStripeCMD*>(
+               &_ListAllStripeCMD_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(ListAllStripeCMD& a, ListAllStripeCMD& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListAllStripeCMD* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListAllStripeCMD* New() const final {
+    return CreateMaybeMessage<ListAllStripeCMD>(nullptr);
+  }
+
+  ListAllStripeCMD* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListAllStripeCMD>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListAllStripeCMD& from);
+  void MergeFrom(const ListAllStripeCMD& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListAllStripeCMD* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "datanode.ListAllStripeCMD";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_datanode_2eproto);
+    return ::descriptor_table_datanode_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:datanode.ListAllStripeCMD)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_datanode_2eproto;
+};
 // ===================================================================
 
 
@@ -439,6 +1635,190 @@ class RequestResult :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// DodownloadCMD
+
+// string NodesUri = 1;
+inline void DodownloadCMD::clear_nodesuri() {
+  nodesuri_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& DodownloadCMD::nodesuri() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.NodesUri)
+  return _internal_nodesuri();
+}
+inline void DodownloadCMD::set_nodesuri(const std::string& value) {
+  _internal_set_nodesuri(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.NodesUri)
+}
+inline std::string* DodownloadCMD::mutable_nodesuri() {
+  // @@protoc_insertion_point(field_mutable:datanode.DodownloadCMD.NodesUri)
+  return _internal_mutable_nodesuri();
+}
+inline const std::string& DodownloadCMD::_internal_nodesuri() const {
+  return nodesuri_.GetNoArena();
+}
+inline void DodownloadCMD::_internal_set_nodesuri(const std::string& value) {
+  
+  nodesuri_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void DodownloadCMD::set_nodesuri(std::string&& value) {
+  
+  nodesuri_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:datanode.DodownloadCMD.NodesUri)
+}
+inline void DodownloadCMD::set_nodesuri(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  nodesuri_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:datanode.DodownloadCMD.NodesUri)
+}
+inline void DodownloadCMD::set_nodesuri(const char* value, size_t size) {
+  
+  nodesuri_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:datanode.DodownloadCMD.NodesUri)
+}
+inline std::string* DodownloadCMD::_internal_mutable_nodesuri() {
+  
+  return nodesuri_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* DodownloadCMD::release_nodesuri() {
+  // @@protoc_insertion_point(field_release:datanode.DodownloadCMD.NodesUri)
+  
+  return nodesuri_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void DodownloadCMD::set_allocated_nodesuri(std::string* nodesuri) {
+  if (nodesuri != nullptr) {
+    
+  } else {
+    
+  }
+  nodesuri_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), nodesuri);
+  // @@protoc_insertion_point(field_set_allocated:datanode.DodownloadCMD.NodesUri)
+}
+
+// int32 NodesStripeId = 2;
+inline void DodownloadCMD::clear_nodesstripeid() {
+  nodesstripeid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::_internal_nodesstripeid() const {
+  return nodesstripeid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::nodesstripeid() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.NodesStripeId)
+  return _internal_nodesstripeid();
+}
+inline void DodownloadCMD::_internal_set_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  nodesstripeid_ = value;
+}
+inline void DodownloadCMD::set_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_nodesstripeid(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.NodesStripeId)
+}
+
+// int32 NodesBlkId = 3;
+inline void DodownloadCMD::clear_nodesblkid() {
+  nodesblkid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::_internal_nodesblkid() const {
+  return nodesblkid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::nodesblkid() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.NodesBlkId)
+  return _internal_nodesblkid();
+}
+inline void DodownloadCMD::_internal_set_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  nodesblkid_ = value;
+}
+inline void DodownloadCMD::set_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_nodesblkid(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.NodesBlkId)
+}
+
+// int32 TargetStripeId = 4;
+inline void DodownloadCMD::clear_targetstripeid() {
+  targetstripeid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::_internal_targetstripeid() const {
+  return targetstripeid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::targetstripeid() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.TargetStripeId)
+  return _internal_targetstripeid();
+}
+inline void DodownloadCMD::_internal_set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  targetstripeid_ = value;
+}
+inline void DodownloadCMD::set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_targetstripeid(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.TargetStripeId)
+}
+
+// int32 TargetBlks = 5;
+inline void DodownloadCMD::clear_targetblks() {
+  targetblks_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::_internal_targetblks() const {
+  return targetblks_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DodownloadCMD::targetblks() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.TargetBlks)
+  return _internal_targetblks();
+}
+inline void DodownloadCMD::_internal_set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  targetblks_ = value;
+}
+inline void DodownloadCMD::set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_targetblks(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.TargetBlks)
+}
+
+// bool IsPart = 6;
+inline void DodownloadCMD::clear_ispart() {
+  ispart_ = false;
+}
+inline bool DodownloadCMD::_internal_ispart() const {
+  return ispart_;
+}
+inline bool DodownloadCMD::ispart() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.IsPart)
+  return _internal_ispart();
+}
+inline void DodownloadCMD::_internal_set_ispart(bool value) {
+  
+  ispart_ = value;
+}
+inline void DodownloadCMD::set_ispart(bool value) {
+  _internal_set_ispart(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.IsPart)
+}
+
+// bool AsPart = 7;
+inline void DodownloadCMD::clear_aspart() {
+  aspart_ = false;
+}
+inline bool DodownloadCMD::_internal_aspart() const {
+  return aspart_;
+}
+inline bool DodownloadCMD::aspart() const {
+  // @@protoc_insertion_point(field_get:datanode.DodownloadCMD.AsPart)
+  return _internal_aspart();
+}
+inline void DodownloadCMD::_internal_set_aspart(bool value) {
+  
+  aspart_ = value;
+}
+inline void DodownloadCMD::set_aspart(bool value) {
+  _internal_set_aspart(value);
+  // @@protoc_insertion_point(field_set:datanode.DodownloadCMD.AsPart)
+}
+
+// -------------------------------------------------------------------
+
 // CheckaliveCMD
 
 // -------------------------------------------------------------------
@@ -469,9 +1849,644 @@ inline void RequestResult::set_trueorfalse(bool value) {
   // @@protoc_insertion_point(field_set:datanode.RequestResult.trueorfalse)
 }
 
+// -------------------------------------------------------------------
+
+// StripeId
+
+// int32 stripeid = 1;
+inline void StripeId::clear_stripeid() {
+  stripeid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 StripeId::_internal_stripeid() const {
+  return stripeid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 StripeId::stripeid() const {
+  // @@protoc_insertion_point(field_get:datanode.StripeId.stripeid)
+  return _internal_stripeid();
+}
+inline void StripeId::_internal_set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  stripeid_ = value;
+}
+inline void StripeId::set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_stripeid(value);
+  // @@protoc_insertion_point(field_set:datanode.StripeId.stripeid)
+}
+
+// -------------------------------------------------------------------
+
+// StripeLocation
+
+// repeated string dataLoc = 1;
+inline int StripeLocation::_internal_dataloc_size() const {
+  return dataloc_.size();
+}
+inline int StripeLocation::dataloc_size() const {
+  return _internal_dataloc_size();
+}
+inline void StripeLocation::clear_dataloc() {
+  dataloc_.Clear();
+}
+inline std::string* StripeLocation::add_dataloc() {
+  // @@protoc_insertion_point(field_add_mutable:datanode.StripeLocation.dataLoc)
+  return _internal_add_dataloc();
+}
+inline const std::string& StripeLocation::_internal_dataloc(int index) const {
+  return dataloc_.Get(index);
+}
+inline const std::string& StripeLocation::dataloc(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.StripeLocation.dataLoc)
+  return _internal_dataloc(index);
+}
+inline std::string* StripeLocation::mutable_dataloc(int index) {
+  // @@protoc_insertion_point(field_mutable:datanode.StripeLocation.dataLoc)
+  return dataloc_.Mutable(index);
+}
+inline void StripeLocation::set_dataloc(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:datanode.StripeLocation.dataLoc)
+  dataloc_.Mutable(index)->assign(value);
+}
+inline void StripeLocation::set_dataloc(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:datanode.StripeLocation.dataLoc)
+  dataloc_.Mutable(index)->assign(std::move(value));
+}
+inline void StripeLocation::set_dataloc(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dataloc_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:datanode.StripeLocation.dataLoc)
+}
+inline void StripeLocation::set_dataloc(int index, const char* value, size_t size) {
+  dataloc_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:datanode.StripeLocation.dataLoc)
+}
+inline std::string* StripeLocation::_internal_add_dataloc() {
+  return dataloc_.Add();
+}
+inline void StripeLocation::add_dataloc(const std::string& value) {
+  dataloc_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:datanode.StripeLocation.dataLoc)
+}
+inline void StripeLocation::add_dataloc(std::string&& value) {
+  dataloc_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:datanode.StripeLocation.dataLoc)
+}
+inline void StripeLocation::add_dataloc(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dataloc_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:datanode.StripeLocation.dataLoc)
+}
+inline void StripeLocation::add_dataloc(const char* value, size_t size) {
+  dataloc_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:datanode.StripeLocation.dataLoc)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+StripeLocation::dataloc() const {
+  // @@protoc_insertion_point(field_list:datanode.StripeLocation.dataLoc)
+  return dataloc_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+StripeLocation::mutable_dataloc() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.StripeLocation.dataLoc)
+  return &dataloc_;
+}
+
+// repeated string localparityLoc = 2;
+inline int StripeLocation::_internal_localparityloc_size() const {
+  return localparityloc_.size();
+}
+inline int StripeLocation::localparityloc_size() const {
+  return _internal_localparityloc_size();
+}
+inline void StripeLocation::clear_localparityloc() {
+  localparityloc_.Clear();
+}
+inline std::string* StripeLocation::add_localparityloc() {
+  // @@protoc_insertion_point(field_add_mutable:datanode.StripeLocation.localparityLoc)
+  return _internal_add_localparityloc();
+}
+inline const std::string& StripeLocation::_internal_localparityloc(int index) const {
+  return localparityloc_.Get(index);
+}
+inline const std::string& StripeLocation::localparityloc(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.StripeLocation.localparityLoc)
+  return _internal_localparityloc(index);
+}
+inline std::string* StripeLocation::mutable_localparityloc(int index) {
+  // @@protoc_insertion_point(field_mutable:datanode.StripeLocation.localparityLoc)
+  return localparityloc_.Mutable(index);
+}
+inline void StripeLocation::set_localparityloc(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:datanode.StripeLocation.localparityLoc)
+  localparityloc_.Mutable(index)->assign(value);
+}
+inline void StripeLocation::set_localparityloc(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:datanode.StripeLocation.localparityLoc)
+  localparityloc_.Mutable(index)->assign(std::move(value));
+}
+inline void StripeLocation::set_localparityloc(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  localparityloc_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:datanode.StripeLocation.localparityLoc)
+}
+inline void StripeLocation::set_localparityloc(int index, const char* value, size_t size) {
+  localparityloc_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:datanode.StripeLocation.localparityLoc)
+}
+inline std::string* StripeLocation::_internal_add_localparityloc() {
+  return localparityloc_.Add();
+}
+inline void StripeLocation::add_localparityloc(const std::string& value) {
+  localparityloc_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:datanode.StripeLocation.localparityLoc)
+}
+inline void StripeLocation::add_localparityloc(std::string&& value) {
+  localparityloc_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:datanode.StripeLocation.localparityLoc)
+}
+inline void StripeLocation::add_localparityloc(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  localparityloc_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:datanode.StripeLocation.localparityLoc)
+}
+inline void StripeLocation::add_localparityloc(const char* value, size_t size) {
+  localparityloc_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:datanode.StripeLocation.localparityLoc)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+StripeLocation::localparityloc() const {
+  // @@protoc_insertion_point(field_list:datanode.StripeLocation.localparityLoc)
+  return localparityloc_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+StripeLocation::mutable_localparityloc() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.StripeLocation.localparityLoc)
+  return &localparityloc_;
+}
+
+// repeated string globalparityLoc = 3;
+inline int StripeLocation::_internal_globalparityloc_size() const {
+  return globalparityloc_.size();
+}
+inline int StripeLocation::globalparityloc_size() const {
+  return _internal_globalparityloc_size();
+}
+inline void StripeLocation::clear_globalparityloc() {
+  globalparityloc_.Clear();
+}
+inline std::string* StripeLocation::add_globalparityloc() {
+  // @@protoc_insertion_point(field_add_mutable:datanode.StripeLocation.globalparityLoc)
+  return _internal_add_globalparityloc();
+}
+inline const std::string& StripeLocation::_internal_globalparityloc(int index) const {
+  return globalparityloc_.Get(index);
+}
+inline const std::string& StripeLocation::globalparityloc(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.StripeLocation.globalparityLoc)
+  return _internal_globalparityloc(index);
+}
+inline std::string* StripeLocation::mutable_globalparityloc(int index) {
+  // @@protoc_insertion_point(field_mutable:datanode.StripeLocation.globalparityLoc)
+  return globalparityloc_.Mutable(index);
+}
+inline void StripeLocation::set_globalparityloc(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:datanode.StripeLocation.globalparityLoc)
+  globalparityloc_.Mutable(index)->assign(value);
+}
+inline void StripeLocation::set_globalparityloc(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:datanode.StripeLocation.globalparityLoc)
+  globalparityloc_.Mutable(index)->assign(std::move(value));
+}
+inline void StripeLocation::set_globalparityloc(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  globalparityloc_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:datanode.StripeLocation.globalparityLoc)
+}
+inline void StripeLocation::set_globalparityloc(int index, const char* value, size_t size) {
+  globalparityloc_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:datanode.StripeLocation.globalparityLoc)
+}
+inline std::string* StripeLocation::_internal_add_globalparityloc() {
+  return globalparityloc_.Add();
+}
+inline void StripeLocation::add_globalparityloc(const std::string& value) {
+  globalparityloc_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:datanode.StripeLocation.globalparityLoc)
+}
+inline void StripeLocation::add_globalparityloc(std::string&& value) {
+  globalparityloc_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:datanode.StripeLocation.globalparityLoc)
+}
+inline void StripeLocation::add_globalparityloc(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  globalparityloc_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:datanode.StripeLocation.globalparityLoc)
+}
+inline void StripeLocation::add_globalparityloc(const char* value, size_t size) {
+  globalparityloc_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:datanode.StripeLocation.globalparityLoc)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+StripeLocation::globalparityloc() const {
+  // @@protoc_insertion_point(field_list:datanode.StripeLocation.globalparityLoc)
+  return globalparityloc_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+StripeLocation::mutable_globalparityloc() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.StripeLocation.globalparityLoc)
+  return &globalparityloc_;
+}
+
+// -------------------------------------------------------------------
+
+// NodesLocation
+
+// repeated string NodesUri = 1;
+inline int NodesLocation::_internal_nodesuri_size() const {
+  return nodesuri_.size();
+}
+inline int NodesLocation::nodesuri_size() const {
+  return _internal_nodesuri_size();
+}
+inline void NodesLocation::clear_nodesuri() {
+  nodesuri_.Clear();
+}
+inline std::string* NodesLocation::add_nodesuri() {
+  // @@protoc_insertion_point(field_add_mutable:datanode.NodesLocation.NodesUri)
+  return _internal_add_nodesuri();
+}
+inline const std::string& NodesLocation::_internal_nodesuri(int index) const {
+  return nodesuri_.Get(index);
+}
+inline const std::string& NodesLocation::nodesuri(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.NodesUri)
+  return _internal_nodesuri(index);
+}
+inline std::string* NodesLocation::mutable_nodesuri(int index) {
+  // @@protoc_insertion_point(field_mutable:datanode.NodesLocation.NodesUri)
+  return nodesuri_.Mutable(index);
+}
+inline void NodesLocation::set_nodesuri(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.NodesUri)
+  nodesuri_.Mutable(index)->assign(value);
+}
+inline void NodesLocation::set_nodesuri(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.NodesUri)
+  nodesuri_.Mutable(index)->assign(std::move(value));
+}
+inline void NodesLocation::set_nodesuri(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  nodesuri_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:datanode.NodesLocation.NodesUri)
+}
+inline void NodesLocation::set_nodesuri(int index, const char* value, size_t size) {
+  nodesuri_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:datanode.NodesLocation.NodesUri)
+}
+inline std::string* NodesLocation::_internal_add_nodesuri() {
+  return nodesuri_.Add();
+}
+inline void NodesLocation::add_nodesuri(const std::string& value) {
+  nodesuri_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:datanode.NodesLocation.NodesUri)
+}
+inline void NodesLocation::add_nodesuri(std::string&& value) {
+  nodesuri_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:datanode.NodesLocation.NodesUri)
+}
+inline void NodesLocation::add_nodesuri(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  nodesuri_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:datanode.NodesLocation.NodesUri)
+}
+inline void NodesLocation::add_nodesuri(const char* value, size_t size) {
+  nodesuri_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:datanode.NodesLocation.NodesUri)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+NodesLocation::nodesuri() const {
+  // @@protoc_insertion_point(field_list:datanode.NodesLocation.NodesUri)
+  return nodesuri_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+NodesLocation::mutable_nodesuri() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.NodesLocation.NodesUri)
+  return &nodesuri_;
+}
+
+// repeated int32 NodesStripeId = 2;
+inline int NodesLocation::_internal_nodesstripeid_size() const {
+  return nodesstripeid_.size();
+}
+inline int NodesLocation::nodesstripeid_size() const {
+  return _internal_nodesstripeid_size();
+}
+inline void NodesLocation::clear_nodesstripeid() {
+  nodesstripeid_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::_internal_nodesstripeid(int index) const {
+  return nodesstripeid_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::nodesstripeid(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.NodesStripeId)
+  return _internal_nodesstripeid(index);
+}
+inline void NodesLocation::set_nodesstripeid(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  nodesstripeid_.Set(index, value);
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.NodesStripeId)
+}
+inline void NodesLocation::_internal_add_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  nodesstripeid_.Add(value);
+}
+inline void NodesLocation::add_nodesstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_nodesstripeid(value);
+  // @@protoc_insertion_point(field_add:datanode.NodesLocation.NodesStripeId)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+NodesLocation::_internal_nodesstripeid() const {
+  return nodesstripeid_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+NodesLocation::nodesstripeid() const {
+  // @@protoc_insertion_point(field_list:datanode.NodesLocation.NodesStripeId)
+  return _internal_nodesstripeid();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+NodesLocation::_internal_mutable_nodesstripeid() {
+  return &nodesstripeid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+NodesLocation::mutable_nodesstripeid() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.NodesLocation.NodesStripeId)
+  return _internal_mutable_nodesstripeid();
+}
+
+// repeated int32 NodesBlkId = 3;
+inline int NodesLocation::_internal_nodesblkid_size() const {
+  return nodesblkid_.size();
+}
+inline int NodesLocation::nodesblkid_size() const {
+  return _internal_nodesblkid_size();
+}
+inline void NodesLocation::clear_nodesblkid() {
+  nodesblkid_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::_internal_nodesblkid(int index) const {
+  return nodesblkid_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::nodesblkid(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.NodesBlkId)
+  return _internal_nodesblkid(index);
+}
+inline void NodesLocation::set_nodesblkid(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  nodesblkid_.Set(index, value);
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.NodesBlkId)
+}
+inline void NodesLocation::_internal_add_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  nodesblkid_.Add(value);
+}
+inline void NodesLocation::add_nodesblkid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_nodesblkid(value);
+  // @@protoc_insertion_point(field_add:datanode.NodesLocation.NodesBlkId)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+NodesLocation::_internal_nodesblkid() const {
+  return nodesblkid_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+NodesLocation::nodesblkid() const {
+  // @@protoc_insertion_point(field_list:datanode.NodesLocation.NodesBlkId)
+  return _internal_nodesblkid();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+NodesLocation::_internal_mutable_nodesblkid() {
+  return &nodesblkid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+NodesLocation::mutable_nodesblkid() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.NodesLocation.NodesBlkId)
+  return _internal_mutable_nodesblkid();
+}
+
+// repeated bool IsPart = 4;
+inline int NodesLocation::_internal_ispart_size() const {
+  return ispart_.size();
+}
+inline int NodesLocation::ispart_size() const {
+  return _internal_ispart_size();
+}
+inline void NodesLocation::clear_ispart() {
+  ispart_.Clear();
+}
+inline bool NodesLocation::_internal_ispart(int index) const {
+  return ispart_.Get(index);
+}
+inline bool NodesLocation::ispart(int index) const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.IsPart)
+  return _internal_ispart(index);
+}
+inline void NodesLocation::set_ispart(int index, bool value) {
+  ispart_.Set(index, value);
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.IsPart)
+}
+inline void NodesLocation::_internal_add_ispart(bool value) {
+  ispart_.Add(value);
+}
+inline void NodesLocation::add_ispart(bool value) {
+  _internal_add_ispart(value);
+  // @@protoc_insertion_point(field_add:datanode.NodesLocation.IsPart)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+NodesLocation::_internal_ispart() const {
+  return ispart_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+NodesLocation::ispart() const {
+  // @@protoc_insertion_point(field_list:datanode.NodesLocation.IsPart)
+  return _internal_ispart();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+NodesLocation::_internal_mutable_ispart() {
+  return &ispart_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+NodesLocation::mutable_ispart() {
+  // @@protoc_insertion_point(field_mutable_list:datanode.NodesLocation.IsPart)
+  return _internal_mutable_ispart();
+}
+
+// int32 TargetStripeId = 5;
+inline void NodesLocation::clear_targetstripeid() {
+  targetstripeid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::_internal_targetstripeid() const {
+  return targetstripeid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::targetstripeid() const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.TargetStripeId)
+  return _internal_targetstripeid();
+}
+inline void NodesLocation::_internal_set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  targetstripeid_ = value;
+}
+inline void NodesLocation::set_targetstripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_targetstripeid(value);
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.TargetStripeId)
+}
+
+// int32 TargetBlks = 6;
+inline void NodesLocation::clear_targetblks() {
+  targetblks_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::_internal_targetblks() const {
+  return targetblks_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 NodesLocation::targetblks() const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.TargetBlks)
+  return _internal_targetblks();
+}
+inline void NodesLocation::_internal_set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  targetblks_ = value;
+}
+inline void NodesLocation::set_targetblks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_targetblks(value);
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.TargetBlks)
+}
+
+// bool AsPart = 7;
+inline void NodesLocation::clear_aspart() {
+  aspart_ = false;
+}
+inline bool NodesLocation::_internal_aspart() const {
+  return aspart_;
+}
+inline bool NodesLocation::aspart() const {
+  // @@protoc_insertion_point(field_get:datanode.NodesLocation.AsPart)
+  return _internal_aspart();
+}
+inline void NodesLocation::_internal_set_aspart(bool value) {
+  
+  aspart_ = value;
+}
+inline void NodesLocation::set_aspart(bool value) {
+  _internal_set_aspart(value);
+  // @@protoc_insertion_point(field_set:datanode.NodesLocation.AsPart)
+}
+
+// -------------------------------------------------------------------
+
+// UploadCMD
+
+// bool AsPart = 1;
+inline void UploadCMD::clear_aspart() {
+  aspart_ = false;
+}
+inline bool UploadCMD::_internal_aspart() const {
+  return aspart_;
+}
+inline bool UploadCMD::aspart() const {
+  // @@protoc_insertion_point(field_get:datanode.UploadCMD.AsPart)
+  return _internal_aspart();
+}
+inline void UploadCMD::_internal_set_aspart(bool value) {
+  
+  aspart_ = value;
+}
+inline void UploadCMD::set_aspart(bool value) {
+  _internal_set_aspart(value);
+  // @@protoc_insertion_point(field_set:datanode.UploadCMD.AsPart)
+}
+
+// int32 stripeid = 2;
+inline void UploadCMD::clear_stripeid() {
+  stripeid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UploadCMD::_internal_stripeid() const {
+  return stripeid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UploadCMD::stripeid() const {
+  // @@protoc_insertion_point(field_get:datanode.UploadCMD.stripeid)
+  return _internal_stripeid();
+}
+inline void UploadCMD::_internal_set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  stripeid_ = value;
+}
+inline void UploadCMD::set_stripeid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_stripeid(value);
+  // @@protoc_insertion_point(field_set:datanode.UploadCMD.stripeid)
+}
+
+// int32 blksize_kb = 3;
+inline void UploadCMD::clear_blksize_kb() {
+  blksize_kb_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UploadCMD::_internal_blksize_kb() const {
+  return blksize_kb_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UploadCMD::blksize_kb() const {
+  // @@protoc_insertion_point(field_get:datanode.UploadCMD.blksize_kb)
+  return _internal_blksize_kb();
+}
+inline void UploadCMD::_internal_set_blksize_kb(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  blksize_kb_ = value;
+}
+inline void UploadCMD::set_blksize_kb(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_blksize_kb(value);
+  // @@protoc_insertion_point(field_set:datanode.UploadCMD.blksize_kb)
+}
+
+// -------------------------------------------------------------------
+
+// DownloadCMD
+
+// bool AsPart = 1;
+inline void DownloadCMD::clear_aspart() {
+  aspart_ = false;
+}
+inline bool DownloadCMD::_internal_aspart() const {
+  return aspart_;
+}
+inline bool DownloadCMD::aspart() const {
+  // @@protoc_insertion_point(field_get:datanode.DownloadCMD.AsPart)
+  return _internal_aspart();
+}
+inline void DownloadCMD::_internal_set_aspart(bool value) {
+  
+  aspart_ = value;
+}
+inline void DownloadCMD::set_aspart(bool value) {
+  _internal_set_aspart(value);
+  // @@protoc_insertion_point(field_set:datanode.DownloadCMD.AsPart)
+}
+
+// -------------------------------------------------------------------
+
+// ListAllStripeCMD
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -5,20 +5,22 @@
             <node uri="0.0.0.0:10001" />
             <node uri="0.0.0.0:10002" />
             <node uri="0.0.0.0:10003" />
-            <node uri="0.0.0.0:10004" />
-            <node uri="0.0.0.0:10005" />
         </nodes>
     </cluster>
     <cluster id="1" gateway="0.0.0.0:10004">
         <nodes>
-            <node uri="0.0.0.0:20004" />
-            <node uri="0.0.0.0:20005" />
-            <node uri="0.0.0.0:20006" />
-            <node uri="0.0.0.0:20007" />
-            <node uri="0.0.0.0:20008" />
+            <node uri="0.0.0.0:10004" />
+            <node uri="0.0.0.0:10005" />
+            <node uri="0.0.0.0:10006" />
         </nodes>
     </cluster>
     <cluster id="2" gateway="0.0.0.0:10007">
+        <nodes>
+            <node uri="0.0.0.0:10007" />
+            <node uri="0.0.0.0:10008" />
+        </nodes>
+    </cluster>
+    <!-- <cluster id="2" gateway="0.0.0.0:10007">
         <nodes>
             <node uri="0.0.0.0:30007" />
             <node uri="0.0.0.0:30008" />
@@ -71,7 +73,7 @@
             <node uri="0.0.0.0:80017" />
             <node uri="0.0.0.0:80018" />
         </nodes>
-    </cluster>
+    </cluster> -->
     
     <!-- <cluster id="2" gateway="0.0.0.0:10007">
         <nodes>

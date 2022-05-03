@@ -48,7 +48,7 @@ struct TableStruct_coordinator_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[7]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,6 +56,9 @@ struct TableStruct_coordinator_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_coordinator_2eproto;
 namespace coordinator {
+class ListAllStripeCMD;
+class ListAllStripeCMDDefaultTypeInternal;
+extern ListAllStripeCMDDefaultTypeInternal _ListAllStripeCMD_default_instance_;
 class RequestResult;
 class RequestResultDefaultTypeInternal;
 extern RequestResultDefaultTypeInternal _RequestResult_default_instance_;
@@ -65,6 +68,9 @@ extern SetPlacementCommandDefaultTypeInternal _SetPlacementCommand_default_insta
 class StripeDetail;
 class StripeDetailDefaultTypeInternal;
 extern StripeDetailDefaultTypeInternal _StripeDetail_default_instance_;
+class StripeDetails;
+class StripeDetailsDefaultTypeInternal;
+extern StripeDetailsDefaultTypeInternal _StripeDetails_default_instance_;
 class StripeId;
 class StripeIdDefaultTypeInternal;
 extern StripeIdDefaultTypeInternal _StripeId_default_instance_;
@@ -79,9 +85,11 @@ class columnDefaultTypeInternal;
 extern columnDefaultTypeInternal _column_default_instance_;
 }  // namespace coordinator
 PROTOBUF_NAMESPACE_OPEN
+template<> ::coordinator::ListAllStripeCMD* Arena::CreateMaybeMessage<::coordinator::ListAllStripeCMD>(Arena*);
 template<> ::coordinator::RequestResult* Arena::CreateMaybeMessage<::coordinator::RequestResult>(Arena*);
 template<> ::coordinator::SetPlacementCommand* Arena::CreateMaybeMessage<::coordinator::SetPlacementCommand>(Arena*);
 template<> ::coordinator::StripeDetail* Arena::CreateMaybeMessage<::coordinator::StripeDetail>(Arena*);
+template<> ::coordinator::StripeDetails* Arena::CreateMaybeMessage<::coordinator::StripeDetails>(Arena*);
 template<> ::coordinator::StripeId* Arena::CreateMaybeMessage<::coordinator::StripeId>(Arena*);
 template<> ::coordinator::StripeInfo* Arena::CreateMaybeMessage<::coordinator::StripeInfo>(Arena*);
 template<> ::coordinator::StripeLocation* Arena::CreateMaybeMessage<::coordinator::StripeLocation>(Arena*);
@@ -116,6 +124,121 @@ inline bool SetPlacementCommand_PLACE_Parse(
     SetPlacementCommand_PLACE_descriptor(), name, value);
 }
 // ===================================================================
+
+class ListAllStripeCMD :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:coordinator.ListAllStripeCMD) */ {
+ public:
+  ListAllStripeCMD();
+  virtual ~ListAllStripeCMD();
+
+  ListAllStripeCMD(const ListAllStripeCMD& from);
+  ListAllStripeCMD(ListAllStripeCMD&& from) noexcept
+    : ListAllStripeCMD() {
+    *this = ::std::move(from);
+  }
+
+  inline ListAllStripeCMD& operator=(const ListAllStripeCMD& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListAllStripeCMD& operator=(ListAllStripeCMD&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ListAllStripeCMD& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListAllStripeCMD* internal_default_instance() {
+    return reinterpret_cast<const ListAllStripeCMD*>(
+               &_ListAllStripeCMD_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(ListAllStripeCMD& a, ListAllStripeCMD& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListAllStripeCMD* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListAllStripeCMD* New() const final {
+    return CreateMaybeMessage<ListAllStripeCMD>(nullptr);
+  }
+
+  ListAllStripeCMD* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListAllStripeCMD>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListAllStripeCMD& from);
+  void MergeFrom(const ListAllStripeCMD& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListAllStripeCMD* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "coordinator.ListAllStripeCMD";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_coordinator_2eproto);
+    return ::descriptor_table_coordinator_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:coordinator.ListAllStripeCMD)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_coordinator_2eproto;
+};
+// -------------------------------------------------------------------
 
 class SetPlacementCommand :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:coordinator.SetPlacementCommand) */ {
@@ -159,7 +282,7 @@ class SetPlacementCommand :
                &_SetPlacementCommand_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(SetPlacementCommand& a, SetPlacementCommand& b) {
     a.Swap(&b);
@@ -319,7 +442,7 @@ class RequestResult :
                &_RequestResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(RequestResult& a, RequestResult& b) {
     a.Swap(&b);
@@ -447,7 +570,7 @@ class StripeInfo :
                &_StripeInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(StripeInfo& a, StripeInfo& b) {
     a.Swap(&b);
@@ -608,7 +731,7 @@ class StripeId :
                &_StripeId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(StripeId& a, StripeId& b) {
     a.Swap(&b);
@@ -736,7 +859,7 @@ class column :
                &_column_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(column& a, column& b) {
     a.Swap(&b);
@@ -897,7 +1020,7 @@ class StripeLocation :
                &_StripeLocation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(StripeLocation& a, StripeLocation& b) {
     a.Swap(&b);
@@ -1051,7 +1174,7 @@ class StripeDetail :
                &_StripeDetail_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(StripeDetail& a, StripeDetail& b) {
     a.Swap(&b);
@@ -1158,6 +1281,143 @@ class StripeDetail :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_coordinator_2eproto;
 };
+// -------------------------------------------------------------------
+
+class StripeDetails :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:coordinator.StripeDetails) */ {
+ public:
+  StripeDetails();
+  virtual ~StripeDetails();
+
+  StripeDetails(const StripeDetails& from);
+  StripeDetails(StripeDetails&& from) noexcept
+    : StripeDetails() {
+    *this = ::std::move(from);
+  }
+
+  inline StripeDetails& operator=(const StripeDetails& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StripeDetails& operator=(StripeDetails&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const StripeDetails& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const StripeDetails* internal_default_instance() {
+    return reinterpret_cast<const StripeDetails*>(
+               &_StripeDetails_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(StripeDetails& a, StripeDetails& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StripeDetails* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline StripeDetails* New() const final {
+    return CreateMaybeMessage<StripeDetails>(nullptr);
+  }
+
+  StripeDetails* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<StripeDetails>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const StripeDetails& from);
+  void MergeFrom(const StripeDetails& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StripeDetails* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "coordinator.StripeDetails";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_coordinator_2eproto);
+    return ::descriptor_table_coordinator_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStripedetailFieldNumber = 1,
+  };
+  // repeated .coordinator.StripeDetail stripedetail = 1;
+  int stripedetail_size() const;
+  private:
+  int _internal_stripedetail_size() const;
+  public:
+  void clear_stripedetail();
+  ::coordinator::StripeDetail* mutable_stripedetail(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::StripeDetail >*
+      mutable_stripedetail();
+  private:
+  const ::coordinator::StripeDetail& _internal_stripedetail(int index) const;
+  ::coordinator::StripeDetail* _internal_add_stripedetail();
+  public:
+  const ::coordinator::StripeDetail& stripedetail(int index) const;
+  ::coordinator::StripeDetail* add_stripedetail();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::StripeDetail >&
+      stripedetail() const;
+
+  // @@protoc_insertion_point(class_scope:coordinator.StripeDetails)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::StripeDetail > stripedetail_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_coordinator_2eproto;
+};
 // ===================================================================
 
 
@@ -1167,6 +1427,10 @@ class StripeDetail :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// ListAllStripeCMD
+
+// -------------------------------------------------------------------
+
 // SetPlacementCommand
 
 // .coordinator.SetPlacementCommand.PLACE place = 1;
@@ -1686,9 +1950,56 @@ inline void StripeDetail::set_allocated_stripeid(::coordinator::StripeId* stripe
   // @@protoc_insertion_point(field_set_allocated:coordinator.StripeDetail.stripeid)
 }
 
+// -------------------------------------------------------------------
+
+// StripeDetails
+
+// repeated .coordinator.StripeDetail stripedetail = 1;
+inline int StripeDetails::_internal_stripedetail_size() const {
+  return stripedetail_.size();
+}
+inline int StripeDetails::stripedetail_size() const {
+  return _internal_stripedetail_size();
+}
+inline void StripeDetails::clear_stripedetail() {
+  stripedetail_.Clear();
+}
+inline ::coordinator::StripeDetail* StripeDetails::mutable_stripedetail(int index) {
+  // @@protoc_insertion_point(field_mutable:coordinator.StripeDetails.stripedetail)
+  return stripedetail_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::StripeDetail >*
+StripeDetails::mutable_stripedetail() {
+  // @@protoc_insertion_point(field_mutable_list:coordinator.StripeDetails.stripedetail)
+  return &stripedetail_;
+}
+inline const ::coordinator::StripeDetail& StripeDetails::_internal_stripedetail(int index) const {
+  return stripedetail_.Get(index);
+}
+inline const ::coordinator::StripeDetail& StripeDetails::stripedetail(int index) const {
+  // @@protoc_insertion_point(field_get:coordinator.StripeDetails.stripedetail)
+  return _internal_stripedetail(index);
+}
+inline ::coordinator::StripeDetail* StripeDetails::_internal_add_stripedetail() {
+  return stripedetail_.Add();
+}
+inline ::coordinator::StripeDetail* StripeDetails::add_stripedetail() {
+  // @@protoc_insertion_point(field_add:coordinator.StripeDetails.stripedetail)
+  return _internal_add_stripedetail();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::coordinator::StripeDetail >&
+StripeDetails::stripedetail() const {
+  // @@protoc_insertion_point(field_list:coordinator.StripeDetails.stripedetail)
+  return stripedetail_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
