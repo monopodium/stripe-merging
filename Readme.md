@@ -29,7 +29,7 @@ Currently,we do not care availabilty issue and just deploy single coordinator,we
 Transition process logically looks similar like this.Briefly Speaking,the client sends a rpc to CN which tells CN to start transition.Then,CN generates a transition plan and guides picked DNs to transfer data blocks or complete coding task parallelly.DN actually perform overall blocks sending and receiving.Once DNs complete the task,they send an ack back to CN,so that CN can further modify corresponding meta data and return transition statistics(we use transition duration) to client.We currently focus on two special cases:x=1(g same) and x=2(g double) in experiments. 
 
 For PC,We assume the following default configurations.
-We adopt the transitioning parameters $x = 2$ PC$(2, 4)$. We set the block size
+We adopt the transitioning parameters $x = 2$ PC(2, 4). We set the block size
 as 64\,MB, and the packet size for network transfer as 1\,MB.  We upload 100\,stripes
 of data and parity blocks, so the total data volume is around 90\,GB. We set the
 number of clusters as 9. We vary different parameters in our experiments.
