@@ -9,7 +9,7 @@ For LRC:
 Overall,our stripe-merging transition consists of two parts:Coding technique and Pre-designed Placement,they play a major role for different redundancy requirements.Specifically, We are interested in two special case:1)x (k-l-g) lrc stripes merging to a (x * k,x * l,g) lrc stripe.2)x (k-l-g) stripes merging to a (x * k,x * l,x * g) lrc stripe.Also,since cross cluster traffic proves to be dominant,we use cross cluster traffic blocks as transition performance metric.For more details,We recommend referring to our paper.
 
 For PC:
-Overall,our stripe-merging transition consists of two parts:Coding technique and Pre-designed Placement,they play a major role for different redundancy requirements.Specifically, We are interested in two special case:1)x (h,v) pc stripes merging to a (xh,v) pc stripe.2))x (h,v) stripes merging to a (h,xv) pc stripe.
+Overall,our stripe-merging transition consists of two parts:Coding technique and Pre-designed Placement,they play a major role for different redundancy requirements.Specifically, We are interested in two special case:1)x (h,v) pc stripes merging to a (xh,v) pc stripe.2)x (h,v) stripes merging to a (h,xv) pc stripe.
 
 # Simulation
 
