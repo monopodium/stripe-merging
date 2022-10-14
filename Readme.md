@@ -1,4 +1,5 @@
-## How to install protobuf
+This repo is forked from https://github.com/infocom22-lrc-stripe-merging/code (@copyright QingPeng Du). We have made changes to the code in the source repository.
+##How to install protobuf
 ```
 git clone -b 3.10.x https://github.com/protocolbuffers/protobuf.git
 cd protobuf
