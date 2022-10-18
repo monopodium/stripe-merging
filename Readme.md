@@ -1,9 +1,6 @@
-This repo is forked from https://github.com/infocom22-lrc-stripe-merging/code (@copyright QingPeng Du). We have made changes to the code in the source repository.
-
 # Overview
 
-This repository is created for "Optimal Data Placement for Stripe Merging in Locally Repairable Codes" , including the system implementation(lrc-stripe-merging-Extensions/ms_code/ directory). Our contribution is to propose a merging-style redundancy transition for LRC(Locally-Repairable-Code)-coded and PC(product code) data.We Design a novel stripe placement for modern data center architecture which achieves excellent transition performance.We find that Merging-style transition is better than existed approaches in terms of generation 
-of wide stripe and transition performance. 
+This repository is created for "Optimal Data Placement for Stripe Merging in Locally Repairable Codes", including the system implementation(stripe-merging/ms_code/ directory). Our contribution is to propose merging-style redundancy transitions for LRC(Locally-Repairable-Codes) and PC(Product Codes). We Design novel stripe data placement schemes that achieve excellent transition performance for modern data centers. We find that merging-style transition is better than existed approaches in terms of the transition performance.
 
 For LRC:
 Overall,our stripe-merging transition consists of two parts:Coding technique and Pre-designed Placement,they play a major role for different redundancy requirements.Specifically, We are interested in two special case:1)x (k-l-g) lrc stripes merging to a (x * k,x * l,g) lrc stripe.2)x (k-l-g) stripes merging to a (x * k,x * l,x * g) lrc stripe.Also,since cross cluster traffic proves to be dominant,we use cross cluster traffic blocks as transition performance metric.For more details,We recommend referring to our paper.
